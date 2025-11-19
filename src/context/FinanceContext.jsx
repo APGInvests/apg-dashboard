@@ -33,6 +33,8 @@ export const ACTIONS = {
 
   // Settings
   UPDATE_SETTINGS: 'UPDATE_SETTINGS',
+  UPDATE_DEBT_STRATEGY: 'UPDATE_DEBT_STRATEGY',
+  UPDATE_DEBT_ORDER: 'UPDATE_DEBT_ORDER',
 
   // Retirement
   UPDATE_RETIREMENT_ACCOUNTS: 'UPDATE_RETIREMENT_ACCOUNTS',
@@ -144,6 +146,31 @@ function financeReducer(state, action) {
       return {
         ...state,
         settings: { ...state.settings, ...action.payload },
+      };
+
+    case ACTIONS.UPDATE_DEBT_STRATEGY:
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          debtStrategy: {
+            ...state.settings.debtStrategy,
+            strategy: action.payload,
+            customDebtOrder: [],
+          },
+        },
+      };
+
+    case ACTIONS.UPDATE_DEBT_ORDER:
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          debtStrategy: {
+            ...state.settings.debtStrategy,
+            customDebtOrder: action.payload,
+          },
+        },
       };
 
     case ACTIONS.UPDATE_RETIREMENT_ACCOUNTS:

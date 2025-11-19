@@ -131,6 +131,10 @@ export const defaultFinanceState = {
       checking_minimum: 5000,
       savings_minimum: 3500,
     },
+    debtStrategy: {
+      strategy: 'snowball', // 'snowball' | 'avalanche' | 'custom'
+      customDebtOrder: [], // Array of debt IDs in custom order
+    },
   },
 };
 

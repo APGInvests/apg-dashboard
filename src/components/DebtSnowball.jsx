@@ -10,13 +10,16 @@ import {
   formatDate,
   daysUntil,
   generateId,
+  sortDebtsBySnowball,
+  sortDebtsByAvalanche,
 } from '../utils/calculations';
-import { Trash2, Plus } from 'lucide-react';
+import { Trash2, Plus, GripVertical } from 'lucide-react';
 
 export function DebtSnowball() {
   const { state, dispatch } = useFinance();
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [draggedDebtId, setDraggedDebtId] = useState(null);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -31,10 +34,33 @@ export function DebtSnowball() {
     state.budget?.debt_snowball_extra || 0
   );
 
-  // Calculate sorted debts with snowball algorithm
+  // Get debt strategy preference
+  const debtStrategy = state.settings?.debtStrategy?.strategy || 'snowball';
+  const customDebtOrder = state.settings?.debtStrategy?.customDebtOrder || [];
+
+  // Calculate sorted debts based on selected strategy
   const sortedDebts = useMemo(() => {
-    return calculateDebtSnowball(state.debts, extraMonthlyPayment, state.income.monthly_take_home_estimate);
-  }, [state.debts, extraMonthlyPayment, state.income.monthly_take_home_estimate]);
+    const calculatedDebts = calculateDebtSnowball(state.debts, extraMonthlyPayment, state.income.monthly_take_home_estimate);
+
+    // Apply strategy sorting
+    if (debtStrategy === 'snowball') {
+      return sortDebtsBySnowball(calculatedDebts);
+    } else if (debtStrategy === 'avalanche') {
+      return sortDebtsByAvalanche(calculatedDebts);
+    } else if (debtStrategy === 'custom' && customDebtOrder.length > 0) {
+      // Custom order: sort by customDebtOrder array
+      return [...calculatedDebts].sort((a, b) => {
+        const aIndex = customDebtOrder.indexOf(a.id);
+        const bIndex = customDebtOrder.indexOf(b.id);
+        // Debts in custom order come first, then unprioritized debts
+        if (aIndex === -1 && bIndex === -1) return 0;
+        if (aIndex === -1) return 1;
+        if (bIndex === -1) return -1;
+        return aIndex - bIndex;
+      });
+    }
+    return calculatedDebts;
+  }, [state.debts, extraMonthlyPayment, state.income.monthly_take_home_estimate, debtStrategy, customDebtOrder]);
 
   // Project payoff timeline
   const payoffTimeline = useMemo(() => {
@@ -125,6 +151,41 @@ export function DebtSnowball() {
     });
   };
 
+  const handleDragStart = (e, debtId) => {
+    setDraggedDebtId(debtId);
+    e.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const handleDrop = (e, targetDebtId) => {
+    e.preventDefault();
+    if (!draggedDebtId || draggedDebtId === targetDebtId) {
+      setDraggedDebtId(null);
+      return;
+    }
+
+    // Create new order with dragged item moved to target position
+    const draggedIndex = sortedDebts.findIndex((d) => d.id === draggedDebtId);
+    const targetIndex = sortedDebts.findIndex((d) => d.id === targetDebtId);
+
+    const newOrder = [...sortedDebts];
+    const [draggedItem] = newOrder.splice(draggedIndex, 1);
+    newOrder.splice(targetIndex, 0, draggedItem);
+
+    // Update custom order in state
+    const newCustomOrder = newOrder.map((d) => d.id);
+    dispatch({
+      type: ACTIONS.UPDATE_DEBT_ORDER,
+      payload: newCustomOrder,
+    });
+
+    setDraggedDebtId(null);
+  };
+
   const getDebtStatus = (debt) => {
     if (debt.balance === 0) return 'paid-off';
     if (debt.interest_rate === 0) return 'zero-percent';
@@ -155,9 +216,9 @@ export function DebtSnowball() {
   return (
     <div className="max-w-7xl mx-auto p-4 md:p-8">
       <div className="mb-8">
-        <h1>Debt Snowball Engine</h1>
+        <h1>Debt Payoff Planner</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
-          Strategic debt payoff with interest optimization
+          Customize your debt payoff strategy: Snowball, Avalanche, or manual control
         </p>
       </div>
 
@@ -218,10 +279,39 @@ export function DebtSnowball() {
         </p>
       </div>
 
-      {/* Debt Snowball Order */}
+      {/* Debt Payoff Strategy */}
       <div className="card mb-8">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-lg font-semibold">Payoff Priority (Snowball Order)</h3>
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold mb-4">Payoff Strategy</h3>
+            <div className="flex items-center gap-4">
+              <div>
+                <label className="text-sm font-medium text-slate-600 dark:text-slate-400 block mb-2">
+                  Strategy
+                </label>
+                <select
+                  value={debtStrategy}
+                  onChange={(e) => {
+                    dispatch({
+                      type: ACTIONS.UPDATE_DEBT_STRATEGY,
+                      payload: e.target.value,
+                    });
+                  }}
+                  className="input w-40"
+                >
+                  <option value="snowball">Snowball (Smallest First)</option>
+                  <option value="avalanche">Avalanche (Highest Interest)</option>
+                  <option value="custom">Custom (Manual Order)</option>
+                </select>
+              </div>
+              {debtStrategy === 'custom' && (
+                <div className="text-xs text-blue-600 dark:text-blue-400 mt-6 flex items-center gap-2">
+                  <GripVertical size={16} />
+                  <span>Drag to reorder</span>
+                </div>
+              )}
+            </div>
+          </div>
           <button
             onClick={() => setShowForm(true)}
             className="btn-primary flex items-center space-x-2"
@@ -230,6 +320,9 @@ export function DebtSnowball() {
             <span>Add Debt</span>
           </button>
         </div>
+
+        <div className="border-t border-slate-200 dark:border-slate-700 pt-6">
+          <h4 className="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-4">Payoff Priority</h4>
 
         {sortedDebts.length === 0 ? (
           <p className="text-slate-600 dark:text-slate-400">No debts recorded yet.</p>
@@ -242,32 +335,46 @@ export function DebtSnowball() {
               return (
                 <div
                   key={debt.id}
-                  className={`border-l-4 p-4 rounded-lg ${
+                  draggable={debtStrategy === 'custom'}
+                  onDragStart={(e) => debtStrategy === 'custom' && handleDragStart(e, debt.id)}
+                  onDragOver={handleDragOver}
+                  onDrop={(e) => debtStrategy === 'custom' && handleDrop(e, debt.id)}
+                  className={`border-l-4 p-4 rounded-lg transition-opacity ${
                     isActive
                       ? 'border-blue-500 bg-slate-50 dark:bg-slate-700'
                       : 'border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800'
+                  } ${draggedDebtId === debt.id ? 'opacity-50' : ''} ${
+                    debtStrategy === 'custom' ? 'cursor-grab' : ''
                   }`}
                 >
                   <div className="flex justify-between items-start mb-3">
-                    <div>
-                      <div className="flex items-center space-x-3 mb-1">
-                        <span className="text-lg font-bold text-slate-500 dark:text-slate-400">
-                          #{idx + 1}
-                        </span>
-                        <h4 className="text-lg font-semibold">{debt.name}</h4>
-                        <span
-                          className={`text-xs px-2 py-1 rounded-full font-medium ${
-                            statusBadges[status]
-                          }`}
-                        >
-                          {statusLabels[status]}
-                        </span>
-                      </div>
-                      {debt.promo_end && debt.interest_rate === 0 && (
-                        <p className="text-sm text-slate-600 dark:text-slate-400">
-                          0% promo ends {formatDate(debt.promo_end)} ({daysUntil(debt.promo_end)} days)
-                        </p>
+                    <div className="flex items-start gap-3">
+                      {debtStrategy === 'custom' && (
+                        <GripVertical
+                          size={20}
+                          className="text-slate-400 dark:text-slate-500 mt-1 flex-shrink-0 cursor-grab"
+                        />
                       )}
+                      <div>
+                        <div className="flex items-center space-x-3 mb-1">
+                          <span className="text-lg font-bold text-slate-500 dark:text-slate-400">
+                            #{idx + 1}
+                          </span>
+                          <h4 className="text-lg font-semibold">{debt.name}</h4>
+                          <span
+                            className={`text-xs px-2 py-1 rounded-full font-medium ${
+                              statusBadges[status]
+                            }`}
+                          >
+                            {statusLabels[status]}
+                          </span>
+                        </div>
+                        {debt.promo_end && debt.interest_rate === 0 && (
+                          <p className="text-sm text-slate-600 dark:text-slate-400">
+                            0% promo ends {formatDate(debt.promo_end)} ({daysUntil(debt.promo_end)} days)
+                          </p>
+                        )}
+                      </div>
                     </div>
                     <div className="flex space-x-2">
                       <button

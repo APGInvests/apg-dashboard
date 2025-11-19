@@ -73,6 +73,22 @@ export function calculateNetWorth(
 }
 
 /**
+ * Sort debts by Snowball strategy (smallest balance first)
+ * Great for quick psychological wins
+ */
+export function sortDebtsBySnowball(debts) {
+  return [...debts].sort((a, b) => a.balance - b.balance);
+}
+
+/**
+ * Sort debts by Avalanche strategy (highest interest rate first)
+ * Mathematically optimal - saves the most money on interest
+ */
+export function sortDebtsByAvalanche(debts) {
+  return [...debts].sort((a, b) => b.interest_rate - a.interest_rate);
+}
+
+/**
  * Debt Snowball Algorithm
  * Returns debts sorted by priority:
  * 1. Debts with 0% interest ending soon (by promo_end date)
