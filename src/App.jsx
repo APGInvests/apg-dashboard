@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FinanceProvider, useFinance, ACTIONS } from './context/FinanceContext';
-import { Navigation } from './components/Navigation';
+import { Sidebar } from './components/Sidebar';
 import { BiweeklyPaycheckTracker } from './components/BiweeklyPaycheckTracker';
 import { DebtSnowball } from './components/DebtSnowball';
 import { RealEstatePage, NetWorthPage } from './components/PlaceholderPages';
+import { RetirementPage } from './components/RetirementPage';
 import { SettingsPage } from './components/Settings';
 import { importSeedData } from './utils/dataImporter';
 import './index.css';
@@ -135,7 +136,7 @@ const SEED_DATA = {
 };
 
 function AppContent() {
-  const [currentPage, setCurrentPage] = useState('paycheck');
+  const [currentPage, setCurrentPage] = useState('income');
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Load dark mode preference from localStorage
     try {
@@ -179,7 +180,7 @@ function AppContent() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'paycheck':
+      case 'income':
         return <BiweeklyPaycheckTracker />;
       case 'debt':
         return <DebtSnowball />;
@@ -187,6 +188,8 @@ function AppContent() {
         return <RealEstatePage />;
       case 'networth':
         return <NetWorthPage />;
+      case 'retirement':
+        return <RetirementPage />;
       case 'settings':
         return <SettingsPage isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />;
       default:
@@ -195,18 +198,16 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
-        <Navigation
-          currentPage={currentPage}
-          onPageChange={setCurrentPage}
-          isDarkMode={isDarkMode}
-          onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
-        />
-        <main className="bg-slate-50 dark:bg-slate-900 min-h-screen">
-          {renderPage()}
-        </main>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+      <Sidebar
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+        isDarkMode={isDarkMode}
+        onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
+      />
+      <main className="bg-slate-50 dark:bg-slate-900 min-h-screen md:ml-64 transition-all duration-300">
+        {renderPage()}
+      </main>
     </div>
   );
 }
