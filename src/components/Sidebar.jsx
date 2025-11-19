@@ -101,14 +101,6 @@ export function Sidebar({ currentPage, onPageChange, isDarkMode, onToggleDarkMod
           onClick={() => setMobileOpen(false)}
         />
       )}
-
-      {/* Main Content Wrapper - adds margin on desktop when sidebar is open */}
-      <div
-        className={`transition-all duration-300 ${
-          isOpen ? 'md:ml-64' : 'md:ml-20'
-        }`}
-        style={{ minHeight: '100vh' }}
-      />
     </>
   );
 }
