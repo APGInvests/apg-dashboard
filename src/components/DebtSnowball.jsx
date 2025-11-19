@@ -222,9 +222,11 @@ export function DebtSnowball() {
 
   return (
     <div className="max-w-7xl mx-auto page-container">
-      <div className="mb-4">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mt-0">Debt Payoff Planner</h1>
-        <p className="text-slate-600 dark:text-slate-400 mt-2">
+      <div className="mb-6">
+        <div className="pb-3 border-b-2 border-blue-500 dark:border-blue-400">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent mt-0">Debt Payoff Planner</h1>
+        </div>
+        <p className="text-slate-600 dark:text-slate-400 mt-3">
           Customize your debt payoff strategy: Snowball, Avalanche, or manual control
         </p>
       </div>

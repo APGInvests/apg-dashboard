@@ -132,10 +132,12 @@ export function RealEstatePage() {
 
   return (
     <div className="max-w-6xl mx-auto page-container">
-      <div className="flex justify-between items-center mb-4">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white mt-0">Real Estate Dashboard</h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-2">
+      <div className="flex justify-between items-center mb-6">
+        <div className="flex-1">
+          <div className="pb-3 border-b-2 border-amber-500 dark:border-amber-400 inline-block">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-amber-600 to-amber-800 dark:from-amber-400 dark:to-amber-500 bg-clip-text text-transparent mt-0">Real Estate Dashboard</h1>
+          </div>
+          <p className="text-slate-600 dark:text-slate-400 mt-3">
             Property performance tracking, monthly cashflow, and equity growth monitoring.
           </p>
         </div>
@@ -414,9 +416,11 @@ export function NetWorthPage() {
 
   return (
     <div className="max-w-6xl mx-auto page-container">
-      <div>
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mt-0">Net Worth Overview</h1>
-        <p className="text-slate-600 dark:text-slate-400 mt-2">
+      <div className="mb-6">
+        <div className="pb-3 border-b-2 border-cyan-500 dark:border-cyan-400 inline-block">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-cyan-800 dark:from-cyan-400 dark:to-cyan-500 bg-clip-text text-transparent mt-0">Net Worth Overview</h1>
+        </div>
+        <p className="text-slate-600 dark:text-slate-400 mt-3">
           High-level financial picture with assets, liabilities, and net worth trends.
         </p>
       </div>
