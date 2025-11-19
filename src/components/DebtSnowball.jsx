@@ -223,7 +223,7 @@ export function DebtSnowball() {
   return (
     <div className="max-w-7xl mx-auto page-container">
       <div className="mb-4">
-        <h1>Debt Payoff Planner</h1>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mt-0">Debt Payoff Planner</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
           Customize your debt payoff strategy: Snowball, Avalanche, or manual control
         </p>
@@ -376,7 +376,7 @@ export function DebtSnowball() {
                             {statusLabels[status]}
                           </span>
                         </div>
-                        <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">
+                        <p className="text-sm text-blue-700 dark:text-blue-300 font-semibold mt-2">
                           {formatPaymentDueDay(debt.payment_due_day)}
                         </p>
                         {debt.promo_end && debt.interest_rate === 0 && (

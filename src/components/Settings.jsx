@@ -138,7 +138,7 @@ export function SettingsPage({ isDarkMode, onToggleDarkMode }) {
   return (
     <div className="max-w-4xl mx-auto page-container">
       <div className="mb-4">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Settings</h1>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mt-0">Settings</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
           Configure budget allocations, account minimums, and income settings
         </p>

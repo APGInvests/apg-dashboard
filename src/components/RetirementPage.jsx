@@ -29,7 +29,7 @@ export function RetirementPage() {
   return (
     <div className="max-w-6xl mx-auto page-container">
       <div className="mb-4">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Retirement Accounts</h1>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mt-0">Retirement Accounts</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
           Track your Roth IRA and 401(k) balances
         </p>
