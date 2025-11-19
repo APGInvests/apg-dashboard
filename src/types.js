@@ -168,6 +168,7 @@ export const ensureIds = (state) => {
     debts: state.debts.map((d) => ({
       ...d,
       id: d.id || generateId(),
+      payment_due_day: d.payment_due_day !== undefined ? d.payment_due_day : 1,
     })),
     properties: state.properties.map((p) => {
       // Migrate old mortgage_balance to new primary_mortgage/heloc structure

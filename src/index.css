@@ -92,7 +92,7 @@
   @apply mb-4;
 }
 
-/* Page content containers - minimal top spacing */
+/* Page content containers - no top spacing */
 .page-container {
-  @apply pt-2 px-3 pb-3 md:pt-2 md:px-5 md:pb-5;
+  @apply pt-0 px-3 pb-3 md:pt-0 md:px-5 md:pb-5;
 }
