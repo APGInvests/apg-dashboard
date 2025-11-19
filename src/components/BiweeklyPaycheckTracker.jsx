@@ -12,6 +12,7 @@ export function BiweeklyPaycheckTracker() {
   const { state, dispatch } = useFinance();
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
+    paycheck_date: new Date().toISOString().split('T')[0],
     paycheck_amount: state.income?.average_net_per_check || 0,
     checking_balance: 0,
     savings_balance: 0,
@@ -44,6 +45,7 @@ export function BiweeklyPaycheckTracker() {
 
     const entry = {
       id: generateId(),
+      paycheck_date: formData.paycheck_date,
       date: new Date().toISOString().split('T')[0],
       paycheck_amount: parseFloat(formData.paycheck_amount) || 0,
       checking_balance: parseFloat(formData.checking_balance) || 0,
@@ -59,6 +61,7 @@ export function BiweeklyPaycheckTracker() {
 
     // Reset form
     setFormData({
+      paycheck_date: new Date().toISOString().split('T')[0],
       paycheck_amount: state.income?.average_net_per_check || 0,
       checking_balance: 0,
       savings_balance: 0,
@@ -160,13 +163,18 @@ export function BiweeklyPaycheckTracker() {
             </div>
 
             <div className="form-group">
-              <label className="label">Date</label>
+              <label className="label">Paycheck Date</label>
               <input
                 type="date"
                 className="input"
-                value={new Date().toISOString().split('T')[0]}
-                disabled
+                value={formData.paycheck_date}
+                onChange={(e) =>
+                  setFormData({ ...formData, paycheck_date: e.target.value })
+                }
               />
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                When you received this paycheck
+              </p>
             </div>
           </div>
 
@@ -321,13 +329,19 @@ export function BiweeklyPaycheckTracker() {
               >
                 <div className="flex-1">
                   <p className="font-semibold text-slate-900 dark:text-white">
-                    {new Date(entry.date).toLocaleDateString('en-US', {
+                    {new Date(entry.paycheck_date).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
                       year: 'numeric',
                     })}
                   </p>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    Logged: {new Date(entry.date).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
                     Checking: {formatCurrency(entry.checking_balance)} | Savings: {formatCurrency(entry.savings_balance)}
                   </p>
                   {entry.notes && (
