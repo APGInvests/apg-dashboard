@@ -150,10 +150,10 @@ export function BiweeklyPaycheckTracker() {
     <div className="max-w-6xl mx-auto page-container">
       <div className="mb-6">
         <div className="pb-3 border-b-2 border-green-500 dark:border-green-400">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-800 dark:from-green-400 dark:to-green-500 bg-clip-text text-transparent mt-0">Biweekly Paycheck Tracker</h1>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-800 dark:from-green-400 dark:to-green-500 bg-clip-text text-transparent mt-0">Income Dashboard</h1>
         </div>
         <p className="text-slate-600 dark:text-slate-400 mt-3">
-          Record paycheck deposits and allocate overages to debt
+          Track paychecks, bonuses, and other income sources
         </p>
       </div>
 
