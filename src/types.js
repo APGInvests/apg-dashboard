@@ -38,6 +38,7 @@
  * @property {number} min_payment - Minimum monthly payment
  * @property {number} interest_rate - APR as decimal (0.0 = 0%, 18.74 = 18.74%)
  * @property {string|null} promo_end - ISO date when 0% promo ends
+ * @property {number} payment_due_day - Day of month payment is due (1-31)
  */
 
 /**

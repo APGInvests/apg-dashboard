@@ -12,6 +12,7 @@ import {
   generateId,
   sortDebtsBySnowball,
   sortDebtsByAvalanche,
+  formatPaymentDueDay,
 } from '../utils/calculations';
 import { Trash2, Plus, GripVertical } from 'lucide-react';
 
@@ -28,6 +29,7 @@ export function DebtSnowball() {
     min_payment: 0,
     interest_rate: 0,
     promo_end: null,
+    payment_due_day: 1,
   });
 
   const [extraMonthlyPayment, setExtraMonthlyPayment] = useState(
@@ -92,6 +94,7 @@ export function DebtSnowball() {
             min_payment: parseFloat(formData.min_payment) || 0,
             interest_rate: parseFloat(formData.interest_rate) || 0,
             promo_end: formData.promo_end,
+            payment_due_day: parseInt(formData.payment_due_day) || 1,
           },
         },
       });
@@ -106,6 +109,7 @@ export function DebtSnowball() {
           min_payment: parseFloat(formData.min_payment) || 0,
           interest_rate: parseFloat(formData.interest_rate) || 0,
           promo_end: formData.promo_end,
+          payment_due_day: parseInt(formData.payment_due_day) || 1,
         },
       });
     }
@@ -116,6 +120,7 @@ export function DebtSnowball() {
       min_payment: 0,
       interest_rate: 0,
       promo_end: null,
+      payment_due_day: 1,
     });
     setShowForm(false);
   };
@@ -127,6 +132,7 @@ export function DebtSnowball() {
       min_payment: debt.min_payment,
       interest_rate: debt.interest_rate,
       promo_end: debt.promo_end,
+      payment_due_day: debt.payment_due_day || 1,
     });
     setEditingId(debt.id);
     setShowForm(true);
@@ -148,6 +154,7 @@ export function DebtSnowball() {
       min_payment: 0,
       interest_rate: 0,
       promo_end: null,
+      payment_due_day: 1,
     });
   };
 
@@ -369,8 +376,11 @@ export function DebtSnowball() {
                             {statusLabels[status]}
                           </span>
                         </div>
+                        <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">
+                          {formatPaymentDueDay(debt.payment_due_day)}
+                        </p>
                         {debt.promo_end && debt.interest_rate === 0 && (
-                          <p className="text-sm text-slate-600 dark:text-slate-400">
+                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
                             0% promo ends {formatDate(debt.promo_end)} ({daysUntil(debt.promo_end)} days)
                           </p>
                         )}
@@ -543,6 +553,24 @@ export function DebtSnowball() {
                     setFormData({ ...formData, promo_end: e.target.value || null })
                   }
                 />
+              </div>
+
+              <div>
+                <label className="label">Payment Due Day (1-31)</label>
+                <input
+                  type="number"
+                  min="1"
+                  max="31"
+                  className="input"
+                  value={formData.payment_due_day}
+                  onChange={(e) =>
+                    setFormData({ ...formData, payment_due_day: e.target.value })
+                  }
+                  placeholder="e.g., 10 for 10th of month"
+                />
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                  {formatPaymentDueDay(formData.payment_due_day)}
+                </p>
               </div>
             </div>
 

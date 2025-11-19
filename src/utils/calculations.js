@@ -373,3 +373,19 @@ export function calculateOverage({
 
   return Math.max(0, totalAvailableBuffer - (knownUpcomingExpenses || 0));
 }
+
+/**
+ * Format payment due day to readable text
+ * @param {number} day - Day of month (1-31)
+ * @returns {string} Formatted text like "Monthly (Every 10th)"
+ */
+export function formatPaymentDueDay(day) {
+  if (!day || day < 1 || day > 31) return '';
+
+  let suffix = 'th';
+  if (day === 1 || day === 21 || day === 31) suffix = 'st';
+  else if (day === 2 || day === 22) suffix = 'nd';
+  else if (day === 3 || day === 23) suffix = 'rd';
+
+  return `Monthly (Every ${day}${suffix})`;
+}

@@ -36,10 +36,11 @@ const SEED_DATA = {
   debts: [
     {
       name: 'Venture One-6209',
-      balance: 10236,
-      min_payment: 150,
+      balance: 102.36,
+      min_payment: 102,
       interest_rate: 0.0,
       promo_end: '2026-04-13',
+      payment_due_day: 10,
     },
     {
       name: 'Barclays Aviator',
@@ -47,6 +48,7 @@ const SEED_DATA = {
       min_payment: 35,
       interest_rate: 0.0,
       promo_end: '2026-06-30',
+      payment_due_day: 1,
     },
     {
       name: 'Visa Platinum-9069',
@@ -54,6 +56,7 @@ const SEED_DATA = {
       min_payment: 174,
       interest_rate: 0.0,
       promo_end: '2026-11-17',
+      payment_due_day: 17,
     },
     {
       name: 'BOA Travel Rewards 5501',
@@ -61,6 +64,7 @@ const SEED_DATA = {
       min_payment: 35,
       interest_rate: 0.0,
       promo_end: '2026-11-29',
+      payment_due_day: 29,
     },
     {
       name: 'Cash rewards-4127',
@@ -68,13 +72,15 @@ const SEED_DATA = {
       min_payment: 50,
       interest_rate: 25.0,
       promo_end: null,
+      payment_due_day: 15,
     },
     {
       name: 'Capital One Spark 2158',
-      balance: 3500,
-      min_payment: 50,
+      balance: 1062,
+      min_payment: 42,
       interest_rate: 22.0,
       promo_end: null,
+      payment_due_day: 10,
     },
     {
       name: 'Amex Bonvoy Business 3009',
@@ -82,6 +88,7 @@ const SEED_DATA = {
       min_payment: 50,
       interest_rate: 18.74,
       promo_end: null,
+      payment_due_day: 5,
     },
     {
       name: 'BMO RV Personal Loan',
@@ -89,6 +96,7 @@ const SEED_DATA = {
       min_payment: 372,
       interest_rate: 6.0,
       promo_end: null,
+      payment_due_day: 1,
     },
     {
       name: 'SBA EIDL',
@@ -96,6 +104,7 @@ const SEED_DATA = {
       min_payment: 244,
       interest_rate: 3.75,
       promo_end: null,
+      payment_due_day: 1,
     },
   ],
   properties: [
