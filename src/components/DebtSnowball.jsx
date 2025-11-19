@@ -206,10 +206,10 @@ export function DebtSnowball() {
 
   const statusBadges = {
     'paid-off': 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200',
-    'zero-percent': 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
+    'zero-percent': 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200',
     'promo-ending': 'bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200',
     'promo-expired': 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200',
-    'active': 'bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200',
+    'active': 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200',
   };
 
   const statusLabels = {
@@ -376,7 +376,7 @@ export function DebtSnowball() {
                             {statusLabels[status]}
                           </span>
                         </div>
-                        <p className="text-sm text-blue-700 dark:text-blue-300 font-semibold mt-2">
+                        <p className="text-sm text-gray-500 dark:text-gray-400 opacity-75 mt-2">
                           {formatPaymentDueDay(debt.payment_due_day)}
                         </p>
                         {debt.promo_end && debt.interest_rate === 0 && (
