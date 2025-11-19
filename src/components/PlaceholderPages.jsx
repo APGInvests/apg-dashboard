@@ -131,7 +131,7 @@ export function RealEstatePage() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-3 md:p-5">
+    <div className="max-w-6xl mx-auto page-container">
       <div className="flex justify-between items-center mb-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Real Estate Dashboard</h1>
@@ -413,7 +413,7 @@ export function NetWorthPage() {
   const debtToAssetsRatio = totalAssets > 0 ? (totalDebt / totalAssets) * 100 : 0;
 
   return (
-    <div className="max-w-6xl mx-auto p-3 md:p-5">
+    <div className="max-w-6xl mx-auto page-container">
       <div>
         <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Net Worth Overview</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">

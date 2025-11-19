@@ -123,6 +123,7 @@ export const defaultFinanceState = {
   properties: [],
   cashFlowHistory: [],
   paycheckHistory: [],
+  incomeHistory: [],
   retirementAccounts: {
     roth_ira: 0,
     four_oh_one_k: 0,

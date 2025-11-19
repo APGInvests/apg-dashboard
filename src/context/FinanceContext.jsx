@@ -34,6 +34,11 @@ export const ACTIONS = {
   UPDATE_PAYCHECK_ENTRY: 'UPDATE_PAYCHECK_ENTRY',
   DELETE_PAYCHECK_ENTRY: 'DELETE_PAYCHECK_ENTRY',
 
+  // Income History
+  ADD_INCOME_ENTRY: 'ADD_INCOME_ENTRY',
+  UPDATE_INCOME_ENTRY: 'UPDATE_INCOME_ENTRY',
+  DELETE_INCOME_ENTRY: 'DELETE_INCOME_ENTRY',
+
   // Settings
   UPDATE_SETTINGS: 'UPDATE_SETTINGS',
   UPDATE_DEBT_STRATEGY: 'UPDATE_DEBT_STRATEGY',
@@ -175,6 +180,28 @@ function financeReducer(state, action) {
         ...state,
         paycheckHistory: state.paycheckHistory.filter(
           (p) => p.id !== action.payload
+        ),
+      };
+
+    case ACTIONS.ADD_INCOME_ENTRY:
+      return {
+        ...state,
+        incomeHistory: [...state.incomeHistory, action.payload],
+      };
+
+    case ACTIONS.UPDATE_INCOME_ENTRY:
+      return {
+        ...state,
+        incomeHistory: state.incomeHistory.map((i) =>
+          i.id === action.payload.id ? { ...i, ...action.payload.updates } : i
+        ),
+      };
+
+    case ACTIONS.DELETE_INCOME_ENTRY:
+      return {
+        ...state,
+        incomeHistory: state.incomeHistory.filter(
+          (i) => i.id !== action.payload
         ),
       };
 

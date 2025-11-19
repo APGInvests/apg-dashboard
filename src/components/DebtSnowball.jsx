@@ -221,7 +221,7 @@ export function DebtSnowball() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-3 md:p-5">
+    <div className="max-w-7xl mx-auto page-container">
       <div className="mb-4">
         <h1>Debt Payoff Planner</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
@@ -427,9 +427,10 @@ export function DebtSnowball() {
                     </div>
                   </div>
 
-                  {/* Progress bar */}
+                  {/* Progress bar - Payoff Priority Indicator */}
                   {isActive && (
                     <div className="mt-4">
+                      <p className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Payoff Priority: #{idx + 1}</p>
                       <div className="w-full bg-slate-300 dark:bg-slate-600 rounded-full h-2">
                         <div
                           className="bg-blue-600 dark:bg-blue-400 h-2 rounded-full"
@@ -439,7 +440,7 @@ export function DebtSnowball() {
                         />
                       </div>
                       <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
-                        Attack this debt #{idx + 1} in priority
+                        Attack this debt in your {debtStrategy === 'snowball' ? 'snowball' : debtStrategy === 'avalanche' ? 'avalanche' : 'custom'} order
                       </p>
                     </div>
                   )}
@@ -451,8 +452,8 @@ export function DebtSnowball() {
         </div>
       </div>
 
-      {/* Payoff Timeline */}
-      {payoffTimeline.length > 0 && (
+      {/* Payoff Timeline - HIDDEN (inaccurate calculations, will be fixed later) */}
+      {/* {payoffTimeline.length > 0 && (
         <div className="card mb-6">
           <h3 className="text-lg font-semibold mb-4">Projected Payoff Timeline</h3>
           <div className="space-y-3">
@@ -481,7 +482,7 @@ export function DebtSnowball() {
             </div>
           )}
         </div>
-      )}
+      )} */}
 
       {/* Add/Edit Debt Form */}
       {showForm && (

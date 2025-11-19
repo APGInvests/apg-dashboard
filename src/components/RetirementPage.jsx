@@ -27,7 +27,7 @@ export function RetirementPage() {
   const totalRetirement = (parseFloat(formData.roth_ira) || 0) + (parseFloat(formData.four_oh_one_k) || 0);
 
   return (
-    <div className="max-w-6xl mx-auto p-3 md:p-5">
+    <div className="max-w-6xl mx-auto page-container">
       <div className="mb-4">
         <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Retirement Accounts</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
