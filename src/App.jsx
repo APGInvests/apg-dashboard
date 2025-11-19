@@ -29,7 +29,6 @@ const SEED_DATA = {
     baby_household: 200,
     personal_fun: 200,
     gifts_flexible: 200,
-    heloc_payment: 900,
     truck_payment: 1000,
     debt_snowball_extra: 2000,
   },

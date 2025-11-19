@@ -15,7 +15,6 @@ const BUDGET_CATEGORIES = [
   { key: 'baby_household', label: 'Baby & Household' },
   { key: 'personal_fun', label: 'Personal Fun' },
   { key: 'gifts_flexible', label: 'Gifts & Flexible' },
-  { key: 'heloc_payment', label: 'HELOC Payment' },
   { key: 'truck_payment', label: 'Truck Payment' },
   { key: 'debt_snowball_extra', label: 'Debt Snowball Extra' },
 ];
