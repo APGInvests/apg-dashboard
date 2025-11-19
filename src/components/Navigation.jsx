@@ -22,7 +22,7 @@ export function Navigation({ currentPage, onPageChange, isDarkMode, onToggleDark
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold">💰 Finance Dashboard</h1>
+            <h1 className="text-2xl font-bold">APG Dashboard</h1>
           </div>
 
           {/* Desktop Menu */}
