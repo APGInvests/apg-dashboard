@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useFinance, ACTIONS } from '../context/FinanceContext';
+import { StatCard } from './StatCard';
 import {
   calculateOverage,
   formatCurrency,
@@ -97,55 +98,43 @@ export function BiweeklyPaycheckTracker() {
         </p>
       </div>
 
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-        <div className="card">
-          <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Total Allocated to Debt</p>
-          <p className="text-2xl font-bold text-green-600 dark:text-green-400 mt-2">
-            {formatCurrency(totalAllocated)}
-          </p>
-          <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
-            {totalPaychecks} paycheck{totalPaychecks !== 1 ? 's' : ''} recorded
-          </p>
-        </div>
+      {/* Summary Cards - Modern SaaS Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <StatCard
+          icon="💰"
+          label="Total Allocated to Debt"
+          value={formatCurrency(totalAllocated)}
+          subtext={`${totalPaychecks} paycheck${totalPaychecks !== 1 ? 's' : ''} recorded`}
+          accentColor="green"
+        />
 
-        <div className="card">
-          <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Expected (2x/month)</p>
-          <p className="text-2xl font-bold text-slate-900 dark:text-white mt-2">
-            {formatCurrency(expectedAllocation)}
-          </p>
-          <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
-            ${state.budget.debt_snowball_extra}/mo target
-          </p>
-        </div>
+        <StatCard
+          icon="📊"
+          label="Expected (2x/month)"
+          value={formatCurrency(expectedAllocation)}
+          subtext={`$${state.budget.debt_snowball_extra}/mo target`}
+          accentColor="slate"
+        />
 
-        <div className="card">
-          <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Status</p>
-          <p
-            className={`text-2xl font-bold mt-2 ${
-              allocationStatus === 'On Track'
-                ? 'text-green-600 dark:text-green-400'
-                : 'text-yellow-600 dark:text-yellow-400'
-            }`}
-          >
-            {allocationStatus}
-          </p>
-          <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
-            {expectedAllocation > totalAllocated
+        <StatCard
+          icon={allocationStatus === 'On Track' ? '✅' : '⚠️'}
+          label="Status"
+          value={allocationStatus}
+          subtext={
+            expectedAllocation > totalAllocated
               ? `${formatCurrency(expectedAllocation - totalAllocated)} behind`
-              : 'Ahead of schedule'}
-          </p>
-        </div>
+              : 'Ahead of schedule'
+          }
+          accentColor={allocationStatus === 'On Track' ? 'green' : 'yellow'}
+        />
 
-        <div className="card">
-          <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Account Minimums</p>
-          <p className="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-2">
-            {formatCurrency(checkingMinimum + savingsMinimum)}
-          </p>
-          <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
-            Checking ${checkingMinimum.toLocaleString()} + Savings ${savingsMinimum.toLocaleString()}
-          </p>
-        </div>
+        <StatCard
+          icon="🏦"
+          label="Account Minimums"
+          value={formatCurrency(checkingMinimum + savingsMinimum)}
+          subtext={`Checking $${checkingMinimum.toLocaleString()} + Savings $${savingsMinimum.toLocaleString()}`}
+          accentColor="blue"
+        />
       </div>
 
       {/* Entry Form */}

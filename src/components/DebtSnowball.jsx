@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useFinance, ACTIONS } from '../context/FinanceContext';
+import { StatCard } from './StatCard';
 import {
   calculateDebtSnowball,
   projectDebtPayoff,
@@ -160,48 +161,39 @@ export function DebtSnowball() {
         </p>
       </div>
 
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-        <div className="card">
-          <h3 className="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-2">
-            Total Debt
-          </h3>
-          <div className="text-3xl font-bold text-red-600 dark:text-red-400">
-            {formatCurrency(totalDebt)}
-          </div>
-        </div>
+      {/* Summary Cards - Modern SaaS Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <StatCard
+          icon="💳"
+          label="Total Debt"
+          value={formatCurrency(totalDebt)}
+          subtext={`${state.debts.length} debts`}
+          accentColor="red"
+        />
 
-        <div className="card">
-          <h3 className="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-2">
-            Min Payments
-          </h3>
-          <div className="text-3xl font-bold text-slate-700 dark:text-slate-300">
-            {formatCurrency(totalMinPayments)}
-          </div>
-          <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">/month</p>
-        </div>
+        <StatCard
+          icon="📋"
+          label="Min Payments"
+          value={formatCurrency(totalMinPayments)}
+          subtext="/month"
+          accentColor="slate"
+        />
 
-        <div className="card">
-          <h3 className="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-2">
-            Total Payment
-          </h3>
-          <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
-            {formatCurrency(totalPayment)}
-          </div>
-          <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
-            (+{formatCurrency(extraMonthlyPayment)} extra)
-          </p>
-        </div>
+        <StatCard
+          icon="💰"
+          label="Total Payment"
+          value={formatCurrency(totalPayment)}
+          subtext={`(+${formatCurrency(extraMonthlyPayment)} extra)`}
+          accentColor="blue"
+        />
 
-        <div className="card">
-          <h3 className="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-2">
-            Interest Cost
-          </h3>
-          <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">
-            {formatCurrency(totalInterestWithExtra)}
-          </div>
-          <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">with current plan</p>
-        </div>
+        <StatCard
+          icon="💸"
+          label="Interest Cost"
+          value={formatCurrency(totalInterestWithExtra)}
+          subtext="with current plan"
+          accentColor="purple"
+        />
       </div>
 
       {/* Extra Payment Slider */}
