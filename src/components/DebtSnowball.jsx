@@ -438,6 +438,7 @@ export function DebtSnowball() {
             })}
           </div>
         )}
+        </div>
       </div>
 
       {/* Payoff Timeline */}
