@@ -214,8 +214,8 @@ export function DebtSnowball() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-4 md:p-8">
-      <div className="mb-8">
+    <div className="max-w-7xl mx-auto p-3 md:p-5">
+      <div className="mb-4">
         <h1>Debt Payoff Planner</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
           Customize your debt payoff strategy: Snowball, Avalanche, or manual control
@@ -223,7 +223,7 @@ export function DebtSnowball() {
       </div>
 
       {/* Summary Cards - Modern SaaS Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <StatCard
           icon="💳"
           label="Total Debt"
@@ -258,7 +258,7 @@ export function DebtSnowball() {
       </div>
 
       {/* Extra Payment Slider */}
-      <div className="card mb-8">
+      <div className="card mb-6">
         <h3 className="text-lg font-semibold mb-4">Monthly Extra Payment</h3>
         <div className="flex items-center space-x-4">
           <input
@@ -280,7 +280,7 @@ export function DebtSnowball() {
       </div>
 
       {/* Debt Payoff Strategy */}
-      <div className="card mb-8">
+      <div className="card mb-6">
         <div className="flex justify-between items-center mb-6">
           <div className="flex-1">
             <h3 className="text-lg font-semibold mb-4">Payoff Strategy</h3>
@@ -443,7 +443,7 @@ export function DebtSnowball() {
 
       {/* Payoff Timeline */}
       {payoffTimeline.length > 0 && (
-        <div className="card mb-8">
+        <div className="card mb-6">
           <h3 className="text-lg font-semibold mb-4">Projected Payoff Timeline</h3>
           <div className="space-y-3">
             {payoffTimeline.map((entry, idx) => (

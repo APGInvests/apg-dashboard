@@ -9,8 +9,8 @@ export function Sidebar({ currentPage, onPageChange, isDarkMode, onToggleDarkMod
     { id: 'income', label: 'Income', icon: '💼' },
     { id: 'debt', label: 'Debt', icon: '💳' },
     { id: 'realestate', label: 'Real Estate', icon: '🏠' },
-    { id: 'networth', label: 'Net Worth', icon: '📊' },
     { id: 'retirement', label: 'Retirement', icon: '🎯' },
+    { id: 'networth', label: 'Net Worth', icon: '📊' },
   ];
 
   const handlePageClick = (pageId) => {

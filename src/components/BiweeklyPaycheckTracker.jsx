@@ -93,8 +93,8 @@ export function BiweeklyPaycheckTracker() {
   const allocationStatus = totalAllocated >= expectedAllocation ? 'On Track' : 'Below Target';
 
   return (
-    <div className="max-w-6xl mx-auto p-4 md:p-8">
-      <div className="mb-8">
+    <div className="max-w-6xl mx-auto p-3 md:p-5">
+      <div className="mb-4">
         <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Biweekly Paycheck Tracker</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
           Record paycheck deposits and allocate overages to debt
@@ -102,7 +102,7 @@ export function BiweeklyPaycheckTracker() {
       </div>
 
       {/* Summary Cards - Modern SaaS Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <StatCard
           icon="💰"
           label="Total Allocated to Debt"
@@ -142,7 +142,7 @@ export function BiweeklyPaycheckTracker() {
 
       {/* Entry Form */}
       {showForm ? (
-        <div className="card mb-8 bg-blue-50 dark:bg-slate-800 border-2 border-blue-200 dark:border-blue-900">
+        <div className="card mb-6 bg-blue-50 dark:bg-slate-800 border-2 border-blue-200 dark:border-blue-900">
           <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Record Paycheck</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -311,7 +311,7 @@ export function BiweeklyPaycheckTracker() {
       ) : (
         <button
           onClick={() => setShowForm(true)}
-          className="btn-primary mb-8"
+          className="btn-primary mb-6"
         >
           + Record Paycheck
         </button>

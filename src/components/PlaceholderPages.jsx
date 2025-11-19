@@ -131,8 +131,8 @@ export function RealEstatePage() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-4 md:p-8">
-      <div className="flex justify-between items-center mb-8">
+    <div className="max-w-6xl mx-auto p-3 md:p-5">
+      <div className="flex justify-between items-center mb-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Real Estate Dashboard</h1>
           <p className="text-slate-600 dark:text-slate-400 mt-2">
@@ -151,7 +151,7 @@ export function RealEstatePage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div className="card">
           <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Total Property Value</p>
           <p className="text-2xl font-bold text-slate-900 dark:text-white mt-2">{formatCurrency(totalValue)}</p>
@@ -168,7 +168,7 @@ export function RealEstatePage() {
 
       {/* Add/Edit Form */}
       {showAddForm && (
-        <div className="card mb-8 bg-blue-50 dark:bg-slate-800 border-2 border-blue-200 dark:border-blue-900">
+        <div className="card mb-6 bg-blue-50 dark:bg-slate-800 border-2 border-blue-200 dark:border-blue-900">
           <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
             {editingId ? 'Edit Property' : 'Add New Property'}
           </h3>
@@ -413,7 +413,7 @@ export function NetWorthPage() {
   const debtToAssetsRatio = totalAssets > 0 ? (totalDebt / totalAssets) * 100 : 0;
 
   return (
-    <div className="max-w-6xl mx-auto p-4 md:p-8">
+    <div className="max-w-6xl mx-auto p-3 md:p-5">
       <div>
         <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Net Worth Overview</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
@@ -422,7 +422,7 @@ export function NetWorthPage() {
       </div>
 
       {/* Main Net Worth Display */}
-      <div className="card mt-8 bg-gradient-to-r from-green-900 to-green-800 dark:from-green-950 dark:to-green-900 border-2 border-green-600 dark:border-green-700">
+      <div className="card mt-4 bg-gradient-to-r from-green-900 to-green-800 dark:from-green-950 dark:to-green-900 border-2 border-green-600 dark:border-green-700">
         <p className="text-sm font-medium text-green-200 uppercase">Total Net Worth</p>
         <p className={`text-4xl md:text-5xl font-bold mt-2 ${netWorth >= 0 ? 'text-green-100' : 'text-red-200'}`}>
           {formatCurrency(netWorth)}
@@ -433,7 +433,7 @@ export function NetWorthPage() {
       </div>
 
       {/* Assets vs Liabilities Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         <div className="card bg-blue-50 dark:bg-slate-800 border-2 border-blue-200 dark:border-blue-900">
           <p className="text-sm font-medium text-slate-600 dark:text-slate-400 uppercase">Total Assets</p>
           <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mt-2">{formatCurrency(totalAssets)}</p>
@@ -445,7 +445,7 @@ export function NetWorthPage() {
       </div>
 
       {/* Asset Breakdown */}
-      <div className="mt-8">
+      <div className="mt-6">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Asset Breakdown</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="card">
@@ -504,7 +504,7 @@ export function NetWorthPage() {
       </div>
 
       {/* Liability Breakdown */}
-      <div className="mt-8">
+      <div className="mt-6">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Liability Breakdown</h2>
         <div className="card">
           <div className="space-y-2">

@@ -27,8 +27,8 @@ export function RetirementPage() {
   const totalRetirement = (parseFloat(formData.roth_ira) || 0) + (parseFloat(formData.four_oh_one_k) || 0);
 
   return (
-    <div className="max-w-6xl mx-auto p-4 md:p-8">
-      <div className="mb-8">
+    <div className="max-w-6xl mx-auto p-3 md:p-5">
+      <div className="mb-4">
         <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Retirement Accounts</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
           Track your Roth IRA and 401(k) balances
@@ -37,13 +37,13 @@ export function RetirementPage() {
 
       {/* Success Message */}
       {saveMessage && (
-        <div className="mb-6 p-4 rounded-lg bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border border-green-300 dark:border-green-700">
+        <div className="mb-4 p-4 rounded-lg bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border border-green-300 dark:border-green-700">
           ✓ {saveMessage}
         </div>
       )}
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <StatCard
           icon="💰"
           label="Roth IRA"
@@ -71,9 +71,9 @@ export function RetirementPage() {
 
       {/* Balance Input Form */}
       <div className="card">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Update Balances</h2>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Update Balances</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div className="form-group">
             <label className="label">Roth IRA Balance</label>
             <div className="flex items-center gap-2">

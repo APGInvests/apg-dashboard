@@ -136,6 +136,22 @@ export const defaultFinanceState = {
       customDebtOrder: [], // Array of debt IDs in custom order
     },
   },
+  budgetCategories: [
+    { key: 'groceries', label: 'Groceries' },
+    { key: 'restaurants', label: 'Restaurants' },
+    { key: 'phone', label: 'Phone' },
+    { key: 'internet', label: 'Internet' },
+    { key: 'utilities', label: 'Utilities' },
+    { key: 'subscriptions_software', label: 'Subscriptions & Software' },
+    { key: 'aaa_insurance', label: 'AAA Insurance' },
+    { key: 'vehicle_maintenance', label: 'Vehicle Maintenance' },
+    { key: 'pool_service', label: 'Pool Service' },
+    { key: 'baby_household', label: 'Baby & Household' },
+    { key: 'personal_fun', label: 'Personal Fun' },
+    { key: 'gifts_flexible', label: 'Gifts & Flexible' },
+    { key: 'truck_payment', label: 'Truck Payment' },
+    { key: 'debt_snowball_extra', label: 'Debt Snowball Extra' },
+  ],
 };
 
 // Helper: Generate unique IDs

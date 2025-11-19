@@ -10,6 +10,9 @@ export const ACTIONS = {
 
   // Budget
   UPDATE_BUDGET: 'UPDATE_BUDGET',
+  ADD_BUDGET_CATEGORY: 'ADD_BUDGET_CATEGORY',
+  DELETE_BUDGET_CATEGORY: 'DELETE_BUDGET_CATEGORY',
+  RENAME_BUDGET_CATEGORY: 'RENAME_BUDGET_CATEGORY',
 
   // Debts
   ADD_DEBT: 'ADD_DEBT',
@@ -56,6 +59,39 @@ function financeReducer(state, action) {
       return {
         ...state,
         budget: { ...state.budget, ...action.payload },
+      };
+
+    case ACTIONS.ADD_BUDGET_CATEGORY:
+      return {
+        ...state,
+        budget: {
+          ...state.budget,
+          [action.payload.key]: action.payload.value || 0,
+        },
+        budgetCategories: [
+          ...(state.budgetCategories || []),
+          { key: action.payload.key, label: action.payload.label },
+        ],
+      };
+
+    case ACTIONS.DELETE_BUDGET_CATEGORY:
+      const { [action.payload]: deleted, ...remainingBudget } = state.budget;
+      return {
+        ...state,
+        budget: remainingBudget,
+        budgetCategories: (state.budgetCategories || []).filter(
+          (cat) => cat.key !== action.payload
+        ),
+      };
+
+    case ACTIONS.RENAME_BUDGET_CATEGORY:
+      return {
+        ...state,
+        budgetCategories: (state.budgetCategories || []).map((cat) =>
+          cat.key === action.payload.key
+            ? { ...cat, label: action.payload.newLabel }
+            : cat
+        ),
       };
 
     case ACTIONS.ADD_DEBT:
