@@ -146,15 +146,8 @@ const SEED_DATA = {
 
 function AppContent() {
   const [currentPage, setCurrentPage] = useState('income');
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Load dark mode preference from localStorage
-    try {
-      const saved = localStorage.getItem('finance_dashboard_dark_mode');
-      return saved ? JSON.parse(saved) : false;
-    } catch {
-      return false;
-    }
-  });
+  // Dark mode is now always ON - futuristic theme requires dark-only mode
+  const isDarkMode = true;
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const { state, dispatch } = useFinance();
 
@@ -170,22 +163,11 @@ function AppContent() {
     }
   }, [isFirstLoad, state.debts.length, dispatch]);
 
-  // Apply and persist dark mode
+  // Apply dark mode on mount (always dark)
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-      document.body.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.body.classList.remove('dark');
-    }
-    // Persist to localStorage
-    try {
-      localStorage.setItem('finance_dashboard_dark_mode', JSON.stringify(isDarkMode));
-    } catch (error) {
-      console.error('Failed to save dark mode preference:', error);
-    }
-  }, [isDarkMode]);
+    document.documentElement.classList.add('dark');
+    document.body.classList.add('dark');
+  }, []);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -200,21 +182,19 @@ function AppContent() {
       case 'retirement':
         return <RetirementPage />;
       case 'settings':
-        return <SettingsPage isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />;
+        return <SettingsPage />;
       default:
         return <BiweeklyPaycheckTracker />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+    <div className="min-h-screen bg-cyber-dark text-slate-100">
       <Sidebar
         currentPage={currentPage}
         onPageChange={setCurrentPage}
-        isDarkMode={isDarkMode}
-        onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
       />
-      <main className="bg-slate-50 dark:bg-slate-900 min-h-screen md:ml-64 transition-all duration-300">
+      <main className="bg-cyber-dark min-h-screen md:ml-64 transition-all duration-300 relative z-10">
         {renderPage()}
       </main>
     </div>

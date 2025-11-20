@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Wallet, BarChart3, CheckCircle, DollarSign, Plus, Trash2, X } from 'lucide-react';
 import { useFinance, ACTIONS } from '../context/FinanceContext';
 import { StatCard } from './StatCard';
 import {
@@ -148,19 +149,21 @@ export function BiweeklyPaycheckTracker() {
 
   return (
     <div className="max-w-6xl mx-auto page-container">
-      <div className="mb-6">
-        <div className="pb-3 border-b-2 border-green-500 dark:border-green-400">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-800 dark:from-green-400 dark:to-green-500 bg-clip-text text-transparent mt-0">Income Dashboard</h1>
+      <div className="mb-8">
+        <div className="pb-4 border-b-2 border-cyber-green/50 shadow-[0_2px_20px_rgba(16,185,129,0.2)]">
+          <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyber-green via-cyber-cyan to-cyber-blue mt-0">
+            Income Dashboard
+          </h1>
         </div>
-        <p className="text-slate-600 dark:text-slate-400 mt-3">
+        <p className="text-slate-300 mt-4 text-lg">
           Track paychecks, bonuses, and other income sources
         </p>
       </div>
 
-      {/* Summary Cards - Modern SaaS Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      {/* Summary Cards - Futuristic Glass Effect */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 animate-stagger">
         <StatCard
-          icon="💰"
+          icon={<Wallet size={24} />}
           label="Total Allocated to Debt"
           value={formatCurrency(totalAllocated)}
           subtext={`${totalPaychecks} paycheck${totalPaychecks !== 1 ? 's' : ''} recorded`}
@@ -168,15 +171,15 @@ export function BiweeklyPaycheckTracker() {
         />
 
         <StatCard
-          icon="📊"
+          icon={<BarChart3 size={24} />}
           label="Expected (2x/month)"
           value={formatCurrency(expectedAllocation)}
           subtext={`$${state.budget.debt_snowball_extra}/mo target`}
-          accentColor="slate"
+          accentColor="teal"
         />
 
         <StatCard
-          icon={allocationStatus === 'On Track' ? '✅' : '⚠️'}
+          icon={<CheckCircle size={24} />}
           label="Status"
           value={allocationStatus}
           subtext={
@@ -184,46 +187,46 @@ export function BiweeklyPaycheckTracker() {
               ? `${formatCurrency(expectedAllocation - totalAllocated)} behind`
               : 'Ahead of schedule'
           }
-          accentColor={allocationStatus === 'On Track' ? 'green' : 'yellow'}
+          accentColor={allocationStatus === 'On Track' ? 'green' : 'pink'}
         />
 
         <StatCard
-          icon="🏦"
+          icon={<DollarSign size={24} />}
           label="Account Minimums"
           value={formatCurrency(checkingMinimum + savingsMinimum)}
           subtext={`Checking $${checkingMinimum.toLocaleString()} + Savings $${savingsMinimum.toLocaleString()}`}
-          accentColor="blue"
+          accentColor="cyan"
         />
       </div>
 
       {/* Entry Form */}
       {showForm ? (
-        <div className="card mb-6 bg-blue-50 dark:bg-slate-800 border-2 border-blue-200 dark:border-blue-900">
+        <div className="glass-card mb-8 border-2 border-cyber-cyan/40 glow-border-cyan p-6 animate-fade-in">
           {/* Tabs */}
-          <div className="flex gap-2 mb-6 border-b border-slate-300 dark:border-slate-600">
+          <div className="flex gap-2 mb-6 border-b border-slate-700/50">
             <button
               onClick={() => setFormType('paycheck')}
-              className={`px-4 py-2 font-semibold border-b-2 transition ${
+              className={`tab ${
                 formType === 'paycheck'
-                  ? 'text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400'
-                  : 'text-slate-600 dark:text-slate-400 border-transparent hover:text-slate-900 dark:hover:text-slate-200'
+                  ? 'active border-cyber-cyan text-cyber-cyan'
+                  : 'text-slate-400 border-transparent hover:text-cyber-cyan'
               }`}
             >
               Paycheck
             </button>
             <button
               onClick={() => setFormType('income')}
-              className={`px-4 py-2 font-semibold border-b-2 transition ${
+              className={`tab ${
                 formType === 'income'
-                  ? 'text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400'
-                  : 'text-slate-600 dark:text-slate-400 border-transparent hover:text-slate-900 dark:hover:text-slate-200'
+                  ? 'active border-cyber-purple text-cyber-purple'
+                  : 'text-slate-400 border-transparent hover:text-cyber-purple'
               }`}
             >
               Other Income
             </button>
           </div>
 
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-blue mb-6">
             {formType === 'paycheck' ? 'Record Paycheck' : 'Record Income'}
           </h2>
 
@@ -368,7 +371,7 @@ export function BiweeklyPaycheckTracker() {
 
             {/* Overage Calculation - Only for Paycheck */}
             {formType === 'paycheck' && (
-              <div className="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg mb-4">
+              <div className="glass-card border border-cyber-cyan/30 p-4 rounded-lg mb-4">
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-slate-700 dark:text-slate-300">Checking Overage:</span>
@@ -452,38 +455,41 @@ export function BiweeklyPaycheckTracker() {
             />
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             <button
               onClick={formType === 'paycheck' ? handleSavePaycheck : handleSaveIncome}
-              className="btn-primary"
+              className="btn-primary flex items-center gap-2"
             >
+              <CheckCircle size={18} />
               Save {formType === 'paycheck' ? 'Paycheck' : 'Income'}
             </button>
             <button
               onClick={() => setShowForm(false)}
-              className="btn-secondary"
+              className="btn-secondary flex items-center gap-2"
             >
+              <X size={18} />
               Cancel
             </button>
           </div>
         </div>
       ) : (
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-3 mb-8">
           <button
             onClick={() => {
               setFormType('paycheck');
               setShowForm(true);
             }}
-            className="btn-primary"
+            className="btn-primary flex items-center gap-2"
           >
-            + Record Paycheck
+            <Plus size={18} />
+            Record Paycheck
           </button>
           <button
             onClick={() => {
               setFormType('income');
               setShowForm(true);
             }}
-            className="btn-secondary"
+            className="btn-secondary flex items-center gap-2"
           >
             + Record Income
           </button>
@@ -492,16 +498,16 @@ export function BiweeklyPaycheckTracker() {
 
       {/* Paycheck History */}
       {state.paycheckHistory && state.paycheckHistory.length > 0 && (
-        <div className="card mb-6">
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Recent Paychecks</h2>
+        <div className="card mb-8">
+          <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-blue mb-6">Recent Paychecks</h2>
           <div className="space-y-3">
             {[...state.paycheckHistory].reverse().map((entry) => (
               <div
                 key={entry.id}
-                className="flex items-center justify-between bg-slate-100 dark:bg-slate-700 p-4 rounded-lg"
+                className="glass-card border border-slate-700/50 p-4 rounded-lg flex items-center justify-between hover:border-cyber-cyan/30 transition-all"
               >
                 <div className="flex-1">
-                  <p className="font-semibold text-slate-900 dark:text-white">
+                  <p className="font-semibold text-slate-100">
                     {new Date(entry.paycheck_date).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
@@ -514,25 +520,26 @@ export function BiweeklyPaycheckTracker() {
                       day: 'numeric',
                     })}
                   </p>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                  <p className="text-sm text-slate-400 mt-1">
                     Checking: {formatCurrency(entry.checking_balance)} | Savings: {formatCurrency(entry.savings_balance)}
                   </p>
                   {entry.notes && (
-                    <p className="text-sm text-slate-600 dark:text-slate-400 italic">
+                    <p className="text-sm text-slate-400 italic">
                       Note: {entry.notes}
                     </p>
                   )}
                 </div>
                 <div className="text-right mr-4">
-                  <p className="font-bold text-green-600 dark:text-green-400">
+                  <p className="font-bold text-cyber-green">
                     {formatCurrency(entry.allocated_to_debt)} to debt
                   </p>
                 </div>
                 <button
                   onClick={() => handleDeletePaycheck(entry.id)}
-                  className="text-red-600 hover:text-red-800 text-sm font-medium"
+                  className="text-cyber-red hover:text-cyber-red/70 p-2 rounded-lg hover:bg-slate-800/50 transition-all"
+                  title="Delete paycheck"
                 >
-                  Delete
+                  <Trash2 size={18} />
                 </button>
               </div>
             ))}
@@ -543,15 +550,15 @@ export function BiweeklyPaycheckTracker() {
       {/* Income History */}
       {state.incomeHistory && state.incomeHistory.length > 0 && (
         <div className="card">
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Recent Income</h2>
+          <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-purple mb-6">Recent Income</h2>
           <div className="space-y-3">
             {[...state.incomeHistory].reverse().map((entry) => (
               <div
                 key={entry.id}
-                className="flex items-center justify-between bg-slate-100 dark:bg-slate-700 p-4 rounded-lg"
+                className="glass-card border border-slate-700/50 p-4 rounded-lg flex items-center justify-between hover:border-cyber-purple/30 transition-all"
               >
                 <div className="flex-1">
-                  <p className="font-semibold text-slate-900 dark:text-white">
+                  <p className="font-semibold text-slate-100">
                     {new Date(entry.income_date).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
@@ -562,31 +569,32 @@ export function BiweeklyPaycheckTracker() {
                       ({entry.income_type?.replace(/_/g, ' ')})
                     </span>
                   </p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <p className="text-xs text-slate-400">
                     Logged: {new Date(entry.date).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
                     })}
                   </p>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                  <p className="text-sm text-slate-400 mt-1">
                     Checking: {formatCurrency(entry.checking_balance)} | Savings: {formatCurrency(entry.savings_balance)}
                   </p>
                   {entry.notes && (
-                    <p className="text-sm text-slate-600 dark:text-slate-400 italic">
+                    <p className="text-sm text-slate-400 italic">
                       Note: {entry.notes}
                     </p>
                   )}
                 </div>
                 <div className="text-right mr-4">
-                  <p className="font-bold text-blue-600 dark:text-blue-400">
+                  <p className="font-bold text-cyber-purple">
                     {formatCurrency(entry.income_amount)} income
                   </p>
                 </div>
                 <button
                   onClick={() => handleDeleteIncome(entry.id)}
-                  className="text-red-600 hover:text-red-800 text-sm font-medium"
+                  className="text-cyber-red hover:text-cyber-red/70 p-2 rounded-lg hover:bg-slate-800/50 transition-all"
+                  title="Delete income"
                 >
-                  Delete
+                  <Trash2 size={18} />
                 </button>
               </div>
             ))}
