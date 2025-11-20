@@ -138,17 +138,17 @@ export function SettingsPage() {
   return (
     <div className="max-w-4xl mx-auto page-container">
       <div className="mb-6">
-        <div className="pb-3 border-b-2 border-cyber-pink/50 shadow-glow-pink">
-          <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyber-pink via-cyber-purple to-cyber-red mt-0 drop-shadow-lg">Settings</h1>
+        <div className="pb-3 border-b-2 border-gray-200">
+          <h1 className="text-5xl font-bold text-navy mt-0">Settings</h1>
         </div>
-        <p className="text-slate-300 mt-3">
+        <p className="text-gray-600 mt-3">
           Configure budget allocations, account minimums, and income settings
         </p>
       </div>
 
       {/* Success Message */}
       {saveMessage && (
-        <div className="mb-4 p-4 rounded-lg bg-cyber-green/20 text-cyber-green border border-cyber-green/50 animate-fade-in">
+        <div className="mb-4 p-4 rounded-lg bg-green-50 text-success border border-success/30 animate-fade-in">
           ✓ {saveMessage}
         </div>
       )}
@@ -159,8 +159,8 @@ export function SettingsPage() {
           onClick={() => setActiveTab('account')}
           className={`px-4 py-2 rounded-lg font-semibold transition-all ${
             activeTab === 'account'
-              ? 'bg-gradient-to-r from-cyber-cyan to-cyber-blue text-slate-900 shadow-glow-cyan'
-              : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              ? 'bg-primary text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
           }`}
         >
           Account Minimums
@@ -169,8 +169,8 @@ export function SettingsPage() {
           onClick={() => setActiveTab('budget')}
           className={`px-4 py-2 rounded-lg font-semibold transition-all ${
             activeTab === 'budget'
-              ? 'bg-gradient-to-r from-cyber-green to-cyber-teal text-slate-900 shadow-glow-green'
-              : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              ? 'bg-primary text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
           }`}
         >
           Budget
@@ -179,8 +179,8 @@ export function SettingsPage() {
           onClick={() => setActiveTab('income')}
           className={`px-4 py-2 rounded-lg font-semibold transition-all ${
             activeTab === 'income'
-              ? 'bg-gradient-to-r from-cyber-purple to-cyber-pink text-slate-900 shadow-glow-purple'
-              : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              ? 'bg-primary text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
           }`}
         >
           Income
@@ -189,9 +189,9 @@ export function SettingsPage() {
 
       {/* Account Minimums Tab */}
       {activeTab === 'account' && (
-        <div className="glass-card border border-cyber-cyan/40 glow-border-cyan p-6 animate-fade-in mb-8">
-          <h2 className="text-2xl font-bold text-cyan-100 mb-6">Account Minimums</h2>
-          <p className="text-slate-300 mb-6">
+        <div className="card border border-gray-200 p-6 animate-fade-in mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Account Minimums</h2>
+          <p className="text-gray-600 mb-6">
             Set the minimum balance you want to maintain in each account. Overages above these minimums are available for debt allocation.
           </p>
 
@@ -200,7 +200,7 @@ export function SettingsPage() {
             <div className="form-group">
               <label className="label">Checking Account Minimum</label>
               <div className="flex items-center gap-2">
-                <span className="text-slate-400">$</span>
+                <span className="text-gray-500">$</span>
                 <input
                   type="number"
                   className="input flex-1"
@@ -214,7 +214,7 @@ export function SettingsPage() {
                   placeholder="0"
                 />
               </div>
-              <p className="text-xs text-slate-400 mt-2">
+              <p className="text-xs text-gray-500 mt-2">
                 Minimum balance to keep in checking for safety and upcoming payments
               </p>
             </div>
@@ -223,7 +223,7 @@ export function SettingsPage() {
             <div className="form-group">
               <label className="label">Savings Account Minimum</label>
               <div className="flex items-center gap-2">
-                <span className="text-slate-400">$</span>
+                <span className="text-gray-500">$</span>
                 <input
                   type="number"
                   className="input flex-1"
@@ -237,16 +237,16 @@ export function SettingsPage() {
                   placeholder="0"
                 />
               </div>
-              <p className="text-xs text-slate-400 mt-2">
+              <p className="text-xs text-gray-500 mt-2">
                 Minimum balance to keep in savings for emergency fund
               </p>
             </div>
           </div>
 
           {/* Summary */}
-          <div className="glass-card border border-cyber-cyan/30 bg-gradient-to-br from-cyber-cyan/10 to-transparent p-4 rounded-lg">
-            <p className="text-sm font-medium text-slate-300 mb-2">Total Account Minimums:</p>
-            <p className="text-2xl font-bold text-cyber-cyan">
+          <div className="card border border-gray-200 p-4 rounded-lg">
+            <p className="text-sm font-medium text-gray-600 mb-2">Total Account Minimums:</p>
+            <p className="text-2xl font-bold text-primary">
               {formatCurrency(
                 (parseFloat(formData.checking_minimum) || 0) +
                   (parseFloat(formData.savings_minimum) || 0)
@@ -258,14 +258,14 @@ export function SettingsPage() {
 
       {/* Budget Tab */}
       {activeTab === 'budget' && (
-        <div className="glass-card border border-cyber-green/40 glow-border-green p-6 animate-fade-in mb-8">
+        <div className="card border border-gray-200 p-6 animate-fade-in mb-8">
           <h2 className="text-2xl font-bold text-green-100 mb-4">Monthly Budget</h2>
-          <p className="text-slate-300 mb-6">
+          <p className="text-gray-600 mb-6">
             Add, edit, or delete budget allocations. Changes will be reflected across the dashboard.
           </p>
 
           {/* Add New Category */}
-          <div className="glass-card border border-cyber-green/30 bg-gradient-to-br from-cyber-green/10 to-transparent mb-6 p-6">
+          <div className="card border border-gray-200 mb-6 p-6">
             <h3 className="text-lg font-semibold text-green-100 mb-4">Add Budget Category</h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
               <div className="form-group">
@@ -291,7 +291,7 @@ export function SettingsPage() {
               <div className="form-group">
                 <label className="label text-sm">Monthly Amount</label>
                 <div className="flex items-center gap-2">
-                  <span className="text-slate-400">$</span>
+                  <span className="text-gray-500">$</span>
                   <input
                     type="number"
                     className="input flex-1"
@@ -318,7 +318,7 @@ export function SettingsPage() {
             <h3 className="text-lg font-semibold text-green-100 mb-4">Existing Categories</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               {budgetCategories.map((category) => (
-                <div key={category.key} className="glass-card border border-slate-700/50 rounded-lg p-4">
+                <div key={category.key} className="card border border-gray-200 rounded-lg p-4">
                   <div className="flex justify-between items-start mb-3">
                     <div className="flex-1">
                       {editingCategory === category.key ? (
@@ -333,7 +333,7 @@ export function SettingsPage() {
                         />
                       ) : (
                         <p
-                          className="font-semibold text-slate-100 cursor-pointer hover:text-cyber-green transition-colors"
+                          className="font-semibold text-gray-900 cursor-pointer hover:text-success transition-colors"
                           onClick={() => {
                             setEditingCategory(category.key);
                             setEditingLabel(category.label);
@@ -342,11 +342,11 @@ export function SettingsPage() {
                           {category.label}
                         </p>
                       )}
-                      <p className="text-xs text-slate-400 mt-1">Key: {category.key}</p>
+                      <p className="text-xs text-gray-500 mt-1">Key: {category.key}</p>
                     </div>
                     <button
                       onClick={() => handleDeleteCategory(category.key)}
-                      className="text-cyber-red hover:text-red-300 hover:bg-slate-800/50 p-2 rounded-lg transition-all ml-2"
+                      className="text-error hover:text-error/70 hover:bg-red-50 p-2 rounded-lg transition-all ml-2"
                       title="Delete category"
                     >
                       <Trash2 size={18} />
@@ -355,7 +355,7 @@ export function SettingsPage() {
                   <div className="form-group">
                     <label className="label text-sm">Monthly Amount</label>
                     <div className="flex items-center gap-2">
-                      <span className="text-slate-400">$</span>
+                      <span className="text-gray-500">$</span>
                       <input
                         type="number"
                         className="input flex-1"
@@ -379,12 +379,12 @@ export function SettingsPage() {
           </div>
 
           {/* Budget Summary */}
-          <div className="glass-card border border-cyber-green/30 bg-gradient-to-br from-cyber-green/10 to-transparent p-4 rounded-lg">
-            <p className="text-sm font-medium text-slate-300 mb-2">Total Monthly Budget:</p>
-            <p className="text-2xl font-bold text-cyber-green">
+          <div className="card border border-gray-200 p-4 rounded-lg">
+            <p className="text-sm font-medium text-gray-600 mb-2">Total Monthly Budget:</p>
+            <p className="text-2xl font-bold text-success">
               {formatCurrency(getTotalMonthlyBudget(formData.budget))}
             </p>
-            <p className="text-xs text-slate-400 mt-2">
+            <p className="text-xs text-gray-500 mt-2">
               Biweekly: {formatCurrency(getTotalMonthlyBudget(formData.budget) / 2)}
             </p>
           </div>
@@ -393,9 +393,9 @@ export function SettingsPage() {
 
       {/* Income Tab */}
       {activeTab === 'income' && (
-        <div className="glass-card border border-cyber-purple/40 glow-border-purple p-6 animate-fade-in mb-8">
+        <div className="card border border-gray-200 p-6 animate-fade-in mb-8">
           <h2 className="text-2xl font-bold text-purple-100 mb-6">Income Settings</h2>
-          <p className="text-slate-300 mb-6">
+          <p className="text-gray-600 mb-6">
             Configure your paycheck and income details.
           </p>
 
@@ -426,7 +426,7 @@ export function SettingsPage() {
             <div className="form-group">
               <label className="label">Average Net Per Check</label>
               <div className="flex items-center gap-2">
-                <span className="text-slate-400">$</span>
+                <span className="text-gray-500">$</span>
                 <input
                   type="number"
                   className="input flex-1"
@@ -443,7 +443,7 @@ export function SettingsPage() {
                   placeholder="0"
                 />
               </div>
-              <p className="text-xs text-slate-400 mt-2">
+              <p className="text-xs text-gray-500 mt-2">
                 Your take-home pay per paycheck
               </p>
             </div>
@@ -452,7 +452,7 @@ export function SettingsPage() {
             <div className="form-group">
               <label className="label">Monthly Take-Home Estimate</label>
               <div className="flex items-center gap-2">
-                <span className="text-slate-400">$</span>
+                <span className="text-gray-500">$</span>
                 <input
                   type="number"
                   className="input flex-1"
@@ -469,7 +469,7 @@ export function SettingsPage() {
                   placeholder="0"
                 />
               </div>
-              <p className="text-xs text-slate-400 mt-2">
+              <p className="text-xs text-gray-500 mt-2">
                 Estimated monthly after-tax income
               </p>
             </div>
@@ -491,25 +491,25 @@ export function SettingsPage() {
                   })
                 }
               />
-              <p className="text-xs text-slate-400 mt-2">
+              <p className="text-xs text-gray-500 mt-2">
                 Used to calculate next paycheck date (biweekly cycle)
               </p>
             </div>
           </div>
 
           {/* Income Summary */}
-          <div className="glass-card border border-cyber-purple/30 bg-gradient-to-br from-cyber-purple/10 to-transparent p-4 rounded-lg">
-            <p className="text-sm font-medium text-slate-300 mb-3">Income Summary:</p>
+          <div className="card border border-gray-200 p-4 rounded-lg">
+            <p className="text-sm font-medium text-gray-600 mb-3">Income Summary:</p>
             <div className="space-y-2">
               <div className="flex justify-between">
-                <span className="text-slate-400">Per Check:</span>
-                <span className="font-bold text-slate-100">
+                <span className="text-gray-500">Per Check:</span>
+                <span className="font-bold text-gray-900">
                   {formatCurrency(formData.income.average_net_per_check)}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">Monthly Estimate:</span>
-                <span className="font-bold text-slate-100">
+                <span className="text-gray-500">Monthly Estimate:</span>
+                <span className="font-bold text-gray-900">
                   {formatCurrency(formData.income.monthly_take_home_estimate)}
                 </span>
               </div>

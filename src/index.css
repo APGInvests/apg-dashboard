@@ -2,183 +2,134 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== FUTURISTIC DARK THEME ===== */
+/* ===== PROFESSIONAL LIGHT THEME ===== */
 
-/* Global Dark Theme (no light mode) */
+/* Global Theme */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  @apply bg-cyber-dark text-slate-100;
+  @apply bg-gray-50 text-gray-900;
 }
 
-/* Glass Morphism Utility */
-.glass-card {
-  @apply bg-glass backdrop-blur-lg border border-slate-700/50 rounded-xl;
-  backdrop-filter: blur(10px);
+/* Professional Card Utility */
+.card {
+  @apply bg-white border border-gray-200 rounded-lg shadow-sm p-4;
 }
 
-.glass-card-sm {
-  @apply bg-glass backdrop-blur-sm border border-slate-800/50 rounded-lg;
-}
-
-/* Glow Utilities */
-.glow-border-cyan {
-  @apply border-cyber-cyan shadow-glow-cyan;
-}
-
-.glow-border-purple {
-  @apply border-cyber-purple shadow-glow-purple;
-}
-
-.glow-border-green {
-  @apply border-cyber-green shadow-glow-green;
-}
-
-.glow-border-pink {
-  @apply border-cyber-pink shadow-glow-pink;
+.card-hover {
+  @apply transition-shadow duration-200 hover:shadow-md;
 }
 
 /* ===== COMPONENT STYLES ===== */
 
-/* Card Styles */
-.card {
-  @apply glass-card p-5 rounded-xl;
-}
-
-.card-lg {
-  @apply glass-card p-6 rounded-xl;
-}
-
 /* Button Styles */
 .btn {
-  @apply px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform;
+  @apply px-4 py-2 rounded-lg font-semibold transition-colors duration-200;
 }
 
 .btn-primary {
-  @apply px-6 py-3 bg-gradient-to-r from-cyber-cyan to-cyber-blue
-         text-cyber-dark font-semibold rounded-lg
-         hover:from-cyan-300 hover:to-blue-300
-         shadow-glow-cyan transition-all duration-300
-         transform hover:scale-105 active:scale-95;
+  @apply px-5 py-2.5 bg-primary hover:bg-primary-dark
+         text-white font-semibold rounded-lg
+         transition-colors duration-200;
 }
 
 .btn-secondary {
-  @apply px-6 py-3 bg-slate-800 hover:bg-slate-700
-         text-slate-200 font-semibold rounded-lg
-         border border-slate-600 transition-all duration-300;
+  @apply px-5 py-2.5 bg-white hover:bg-gray-50
+         text-gray-700 font-semibold rounded-lg
+         border border-gray-300 transition-colors duration-200;
 }
 
 .btn-ghost {
-  @apply px-4 py-2 text-cyber-cyan hover:bg-slate-800/50
-         rounded-lg transition-all duration-300;
+  @apply px-4 py-2 text-primary hover:bg-blue-50
+         rounded-lg transition-colors duration-200;
 }
 
 /* Input Styles */
 .input {
-  @apply w-full px-4 py-3 bg-slate-900/50 border border-slate-700
-         rounded-lg text-slate-100
-         focus:outline-none focus:border-cyber-cyan focus:shadow-glow-cyan
-         transition-all duration-300
-         placeholder-slate-500;
+  @apply w-full px-3 py-2 bg-white border border-gray-300
+         rounded-lg text-gray-900
+         focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary
+         transition-colors duration-200
+         placeholder-gray-400;
 }
 
 .input-sm {
-  @apply px-3 py-2 bg-slate-900/50 border border-slate-700
-         rounded-md text-sm text-slate-100
-         focus:outline-none focus:border-cyber-cyan
-         transition-all duration-300;
+  @apply px-3 py-2 bg-white border border-gray-300
+         rounded-md text-sm text-gray-900
+         focus:outline-none focus:border-primary
+         transition-colors duration-200;
 }
 
 /* Label Styles */
 .label {
-  @apply block text-sm font-semibold text-cyber-cyan mb-2 uppercase tracking-wide;
+  @apply block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-normal;
 }
 
 .label-gray {
-  @apply block text-sm font-medium text-slate-300 mb-1;
+  @apply block text-sm font-medium text-gray-600 mb-1;
 }
 
 /* Form Group */
 .form-group {
-  @apply mb-5;
+  @apply mb-3;
 }
 
 /* Page Container */
 .page-container {
-  @apply pt-0 px-3 pb-3 md:pt-0 md:px-5 md:pb-5;
+  @apply px-4 py-4 md:px-6 md:py-6;
 }
 
 /* ===== TEXT UTILITIES ===== */
 
-.text-glow-cyan {
-  @apply text-cyber-cyan drop-shadow-[0_0_8px_rgba(0,217,255,0.5)];
-}
-
-.text-gradient-cyan-purple {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-blue-400 to-cyber-purple;
-}
-
-.text-gradient-cyan-blue {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-blue;
-}
-
-.text-gradient-purple-pink {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-cyber-purple to-cyber-pink;
-}
-
 /* ===== METRIC STYLES ===== */
 
 .metric-large {
-  @apply text-5xl font-extrabold tracking-tight;
+  @apply text-3xl font-bold tracking-tight;
 }
 
 .metric-medium {
-  @apply text-3xl font-bold;
+  @apply text-2xl font-semibold;
 }
 
 .metric-small {
-  @apply text-xl font-semibold;
+  @apply text-lg font-semibold;
 }
 
 .metric-label {
-  @apply text-sm font-medium text-slate-400 uppercase tracking-wide;
+  @apply text-sm font-medium text-gray-500 uppercase tracking-normal;
 }
 
 /* ===== INTERACTIVE ELEMENTS ===== */
 
 .tab {
-  @apply px-4 py-2 border-b-2 border-transparent text-slate-400
-         hover:text-cyber-cyan transition-colors duration-300 cursor-pointer;
+  @apply px-4 py-2 border-b-2 border-transparent text-gray-500
+         hover:text-primary transition-colors duration-200 cursor-pointer;
 }
 
 .tab.active {
-  @apply border-cyber-cyan text-cyber-cyan shadow-[0_2px_20px_rgba(0,217,255,0.3)];
+  @apply border-primary text-primary;
 }
 
 .badge {
-  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
 }
 
 .badge-green {
-  @apply bg-cyber-green/20 text-cyber-green border border-cyber-green/50;
+  @apply bg-green-100 text-green-800;
 }
 
 .badge-red {
-  @apply bg-cyber-red/20 text-cyber-red border border-cyber-red/50;
+  @apply bg-red-100 text-red-800;
 }
 
-.badge-yellow {
-  @apply bg-cyber-orange/20 text-cyber-orange border border-cyber-orange/50;
+.badge-blue {
+  @apply bg-blue-100 text-blue-800;
 }
 
-.badge-cyan {
-  @apply bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/50;
-}
-
-.badge-purple {
-  @apply bg-cyber-purple/20 text-cyber-purple border border-cyber-purple/50;
+.badge-amber {
+  @apply bg-amber-100 text-amber-800;
 }
 
 /* ===== ANIMATIONS ===== */
@@ -235,10 +186,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 217, 255, 0.3);
+  background: rgba(156, 163, 175, 0.5);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 217, 255, 0.6);
+  background: rgba(156, 163, 175, 0.8);
 }

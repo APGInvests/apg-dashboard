@@ -205,11 +205,11 @@ export function DebtSnowball() {
   };
 
   const statusBadges = {
-    'paid-off': 'bg-cyber-green/20 text-cyber-green border border-cyber-green/50',
-    'zero-percent': 'bg-cyber-green/20 text-cyber-green border border-cyber-green/50',
-    'promo-ending': 'bg-cyber-orange/20 text-cyber-orange border border-cyber-orange/50',
-    'promo-expired': 'bg-cyber-red/20 text-cyber-red border border-cyber-red/50',
-    'active': 'bg-cyber-red/20 text-cyber-red border border-cyber-red/50',
+    'paid-off': 'bg-green-100 text-success border border-success/30',
+    'zero-percent': 'bg-green-100 text-success border border-success/30',
+    'promo-ending': 'bg-amber-100 text-warning border border-warning/30',
+    'promo-expired': 'bg-red-100 text-error border border-error/30',
+    'active': 'bg-red-100 text-error border border-error/30',
   };
 
   const statusLabels = {
@@ -223,10 +223,10 @@ export function DebtSnowball() {
   return (
     <div className="max-w-7xl mx-auto page-container">
       <div className="mb-6">
-        <div className="pb-3 border-b-2 border-cyber-purple/50 shadow-glow-purple">
-          <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyber-purple via-cyber-pink to-cyber-red mt-0 drop-shadow-lg">Debt Payoff Planner</h1>
+        <div className="pb-3 border-b-2 border-gray-200">
+          <h1 className="text-5xl font-bold text-navy mt-0">Debt Payoff Planner</h1>
         </div>
-        <p className="text-slate-300 mt-3">
+        <p className="text-gray-600 mt-3">
           Customize your debt payoff strategy: Snowball, Avalanche, or manual control
         </p>
       </div>
@@ -267,7 +267,7 @@ export function DebtSnowball() {
       </div>
 
       {/* Extra Payment Slider */}
-      <div className="glass-card border border-cyber-cyan/40 glow-border-cyan mb-6 p-6 animate-fade-in">
+      <div className="card border border-gray-200 mb-6 p-6 animate-fade-in">
         <h3 className="text-lg font-semibold text-cyan-100 mb-4">Monthly Extra Payment</h3>
         <div className="flex items-center space-x-4">
           <input
@@ -277,22 +277,22 @@ export function DebtSnowball() {
             step="100"
             value={extraMonthlyPayment}
             onChange={(e) => setExtraMonthlyPayment(parseFloat(e.target.value))}
-            className="flex-1 h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyber-cyan"
+            className="flex-1 h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-primary"
           />
-          <div className="text-2xl font-bold text-cyber-cyan w-32 text-right">
+          <div className="text-2xl font-bold text-primary w-32 text-right">
             {formatCurrency(extraMonthlyPayment)}
           </div>
         </div>
-        <p className="text-sm text-slate-400 mt-2">
+        <p className="text-sm text-gray-500 mt-2">
           Budget allocation: {formatCurrency(state.budget?.debt_snowball_extra || 0)}
         </p>
       </div>
 
       {/* Debt Payoff Strategy */}
-      <div className="glass-card border border-cyber-purple/40 glow-border-purple mb-6 p-6 animate-fade-in">
+      <div className="card border border-gray-200 mb-6 p-6 animate-fade-in">
         <div className="flex justify-between items-center mb-6">
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-purple-100 mb-4">Payoff Strategy</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Payoff Strategy</h3>
             <div className="flex items-center gap-4">
               <div>
                 <label className="label">Strategy</label>
@@ -312,7 +312,7 @@ export function DebtSnowball() {
                 </select>
               </div>
               {debtStrategy === 'custom' && (
-                <div className="text-xs text-cyber-cyan mt-6 flex items-center gap-2">
+                <div className="text-xs text-primary mt-6 flex items-center gap-2">
                   <GripVertical size={16} />
                   <span>Drag to reorder</span>
                 </div>
@@ -329,10 +329,10 @@ export function DebtSnowball() {
         </div>
 
         <div className="border-t border-slate-700/50 pt-6">
-          <h4 className="text-sm font-semibold text-slate-300 mb-4">Payoff Priority</h4>
+          <h4 className="text-sm font-semibold text-gray-900 mb-4">Payoff Priority</h4>
 
         {sortedDebts.length === 0 ? (
-          <p className="text-slate-400">No debts recorded yet.</p>
+          <p className="text-gray-500">No debts recorded yet.</p>
         ) : (
           <div className="space-y-4">
             {sortedDebts.map((debt, idx) => {
@@ -346,10 +346,10 @@ export function DebtSnowball() {
                   onDragStart={(e) => debtStrategy === 'custom' && handleDragStart(e, debt.id)}
                   onDragOver={handleDragOver}
                   onDrop={(e) => debtStrategy === 'custom' && handleDrop(e, debt.id)}
-                  className={`glass-card border-l-4 p-4 transition-all ${
+                  className={`card border-l-4 p-4 transition-all ${
                     isActive
-                      ? 'border-cyber-purple bg-gradient-to-br from-cyber-purple/10 to-transparent shadow-lg'
-                      : 'border-slate-700 bg-slate-800/40'
+                      ? 'border-primary bg-blue-50 shadow-md'
+                      : 'border-gray-200 bg-white'
                   } ${draggedDebtId === debt.id ? 'opacity-50' : ''} ${
                     debtStrategy === 'custom' ? 'cursor-grab' : ''
                   }`}
@@ -359,12 +359,12 @@ export function DebtSnowball() {
                       {debtStrategy === 'custom' && (
                         <GripVertical
                           size={20}
-                          className="text-slate-400 dark:text-slate-500 mt-1 flex-shrink-0 cursor-grab"
+                          className="text-gray-500 mt-1 flex-shrink-0 cursor-grab"
                         />
                       )}
                       <div>
                         <div className="flex items-center space-x-3 mb-1">
-                          <span className="text-lg font-bold text-slate-500 dark:text-slate-400">
+                          <span className="text-lg font-bold text-gray-500">
                             #{idx + 1}
                           </span>
                           <h4 className="text-lg font-semibold">{debt.name}</h4>
@@ -376,11 +376,11 @@ export function DebtSnowball() {
                             {statusLabels[status]}
                           </span>
                         </div>
-                        <p className="text-sm text-slate-400 mt-2">
+                        <p className="text-sm text-gray-500 mt-2">
                           {formatPaymentDueDay(debt.payment_due_day)}
                         </p>
                         {debt.promo_end && debt.interest_rate === 0 && (
-                          <p className="text-sm text-slate-400 mt-1">
+                          <p className="text-sm text-gray-500 mt-1">
                             0% promo ends {formatDate(debt.promo_end)} ({daysUntil(debt.promo_end)} days)
                           </p>
                         )}
@@ -389,14 +389,14 @@ export function DebtSnowball() {
                     <div className="flex space-x-2">
                       <button
                         onClick={() => handleEdit(debt)}
-                        className="text-cyber-cyan hover:text-cyan-300 hover:bg-slate-800/50 p-2 rounded-lg transition-all"
+                        className="text-primary hover:text-primary/70 hover:bg-blue-50 p-2 rounded-lg transition-all"
                         title="Edit debt"
                       >
                         <Edit size={18} />
                       </button>
                       <button
                         onClick={() => handleDelete(debt.id)}
-                        className="text-cyber-red hover:text-red-300 hover:bg-slate-800/50 p-2 rounded-lg transition-all"
+                        className="text-error hover:text-error/70 hover:bg-red-50 p-2 rounded-lg transition-all"
                         title="Delete debt"
                       >
                         <Trash2 size={18} />
@@ -406,24 +406,24 @@ export function DebtSnowball() {
 
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                     <div>
-                      <p className="text-xs text-slate-400">Balance</p>
-                      <p className="text-lg font-bold text-slate-100">{formatCurrency(debt.balance)}</p>
+                      <p className="text-xs text-gray-500">Balance</p>
+                      <p className="text-lg font-bold text-gray-900">{formatCurrency(debt.balance)}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-400">Min Payment</p>
-                      <p className="text-lg font-bold text-slate-100">{formatCurrency(debt.min_payment)}</p>
+                      <p className="text-xs text-gray-500">Min Payment</p>
+                      <p className="text-lg font-bold text-gray-900">{formatCurrency(debt.min_payment)}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-400">Interest Rate</p>
-                      <p className="text-lg font-bold text-slate-100">{debt.interest_rate.toFixed(2)}%</p>
+                      <p className="text-xs text-gray-500">Interest Rate</p>
+                      <p className="text-lg font-bold text-gray-900">{debt.interest_rate.toFixed(2)}%</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-400">Months to Payoff</p>
-                      <p className="text-lg font-bold text-slate-100">{Math.max(0, debt.monthsToPayoff)}</p>
+                      <p className="text-xs text-gray-500">Months to Payoff</p>
+                      <p className="text-lg font-bold text-gray-900">{Math.max(0, debt.monthsToPayoff)}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-400">Interest Cost</p>
-                      <p className="text-lg font-bold text-cyber-orange">
+                      <p className="text-xs text-gray-500">Interest Cost</p>
+                      <p className="text-lg font-bold text-warning">
                         {formatCurrency(debt.interestCost)}
                       </p>
                     </div>
@@ -432,16 +432,16 @@ export function DebtSnowball() {
                   {/* Progress bar - Payoff Priority Indicator */}
                   {isActive && (
                     <div className="mt-4">
-                      <p className="text-xs font-semibold text-slate-300 mb-2">Payoff Priority: #{idx + 1}</p>
+                      <p className="text-xs font-semibold text-gray-900 mb-2">Payoff Priority: #{idx + 1}</p>
                       <div className="w-full bg-slate-700 rounded-full h-2">
                         <div
-                          className="bg-gradient-to-r from-cyber-purple to-cyber-pink h-2 rounded-full shadow-glow-purple"
+                          className="bg-primary h-2 rounded-full"
                           style={{
                             width: `${Math.min(100, (idx / sortedDebts.length) * 100 + 20)}%`,
                           }}
                         />
                       </div>
-                      <p className="text-xs text-slate-400 mt-1">
+                      <p className="text-xs text-gray-500 mt-1">
                         Attack this debt in your {debtStrategy === 'snowball' ? 'snowball' : debtStrategy === 'avalanche' ? 'avalanche' : 'custom'} order
                       </p>
                     </div>
@@ -463,7 +463,7 @@ export function DebtSnowball() {
               <div key={idx} className="flex justify-between items-center border-b dark:border-slate-700 pb-3 last:border-b-0">
                 <div>
                   <p className="font-semibold">#{idx + 1}: {entry.debtName}</p>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                  <p className="text-sm text-gray-600">
                     {entry.monthsToPayoff} months ({entry.payoffDate})
                   </p>
                 </div>
@@ -489,7 +489,7 @@ export function DebtSnowball() {
       {/* Add/Edit Debt Form */}
       {showForm && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="glass-card border border-cyber-purple/50 glow-border-purple max-w-md w-full p-6 animate-fade-in">
+          <div className="card border border-gray-200 max-w-md w-full p-6 animate-fade-in">
             <h3 className="text-2xl font-bold text-purple-100 mb-4">
               {editingId ? 'Edit Debt' : 'Add New Debt'}
             </h3>
@@ -571,7 +571,7 @@ export function DebtSnowball() {
                   }
                   placeholder="e.g., 10 for 10th of month"
                 />
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                <p className="text-xs text-gray-600 mt-1">
                   {formatPaymentDueDay(formData.payment_due_day)}
                 </p>
               </div>

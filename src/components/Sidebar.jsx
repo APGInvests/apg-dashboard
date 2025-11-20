@@ -26,7 +26,7 @@ export function Sidebar({ currentPage, onPageChange }) {
       {/* Mobile Toggle Button */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-cyber-card border border-cyber-cyan/30 text-cyber-cyan hover:bg-slate-800/70 hover:border-cyber-cyan/60 transition-all shadow-glow-cyan"
+        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 transition-all"
         title="Toggle menu"
       >
         {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -34,20 +34,20 @@ export function Sidebar({ currentPage, onPageChange }) {
 
       {/* Sidebar */}
       <nav
-        className={`fixed left-0 top-0 h-screen bg-gradient-to-b from-cyber-dark to-cyber-card border-r border-slate-700/50 text-white flex flex-col transition-all duration-300 z-40 ${
+        className={`fixed left-0 top-0 h-screen bg-white border-r border-gray-200 text-gray-900 flex flex-col transition-all duration-300 z-40 ${
           isOpen ? 'w-64' : 'w-20'
         } ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
       >
-        {/* Header with glow effect */}
-        <div className="p-4 border-b border-cyan-500/20 flex items-center justify-between bg-gradient-to-r from-cyber-cyan/5 to-transparent">
+        {/* Header */}
+        <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-white">
           {isOpen && (
-            <h1 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-blue drop-shadow-lg">
+            <h1 className="text-2xl font-bold text-navy">
               APG
             </h1>
           )}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 hover:bg-slate-800/70 text-cyber-cyan hover:text-cyan-300 rounded-lg transition-all duration-300 hidden md:block"
+            className="p-2 hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-lg transition-all duration-300 hidden md:block"
             title={isOpen ? 'Collapse sidebar' : 'Expand sidebar'}
           >
             {isOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
@@ -63,10 +63,10 @@ export function Sidebar({ currentPage, onPageChange }) {
               <button
                 key={page.id}
                 onClick={() => handlePageClick(page.id)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 border-l-4 ${
                   isActive
-                    ? 'bg-gradient-to-r from-cyber-cyan/20 to-cyber-blue/10 text-cyber-cyan border-l-4 border-cyber-cyan shadow-glow-cyan'
-                    : 'text-slate-400 hover:text-cyber-cyan hover:bg-slate-800/50 border-l-4 border-transparent'
+                    ? 'bg-blue-50 text-primary border-l-primary'
+                    : 'text-gray-600 hover:text-primary hover:bg-gray-50 border-l-transparent'
                 }`}
                 title={page.label}
               >
@@ -78,13 +78,13 @@ export function Sidebar({ currentPage, onPageChange }) {
         </div>
 
         {/* Bottom Section - Settings Only */}
-        <div className="border-t border-slate-700/50 p-2 bg-gradient-to-t from-cyber-card/50 to-transparent">
+        <div className="border-t border-gray-200 p-2 bg-white">
           <button
             onClick={() => handlePageClick('settings')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 border-l-4 ${
               currentPage === 'settings'
-                ? 'bg-gradient-to-r from-cyber-purple/20 to-cyber-pink/10 text-cyber-purple border-l-4 border-cyber-purple shadow-glow-purple'
-                : 'text-slate-400 hover:text-cyber-purple hover:bg-slate-800/50 border-l-4 border-transparent'
+                ? 'bg-blue-50 text-primary border-l-primary'
+                : 'text-gray-600 hover:text-primary hover:bg-gray-50 border-l-transparent'
             }`}
             title="Settings"
           >
