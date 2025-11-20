@@ -134,10 +134,10 @@ export function RealEstatePage() {
     <div className="max-w-6xl mx-auto page-container">
       <div className="flex justify-between items-center mb-6">
         <div className="flex-1">
-          <div className="pb-3 border-b-2 border-amber-500 dark:border-amber-400 inline-block">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-amber-600 to-amber-800 dark:from-amber-400 dark:to-amber-500 bg-clip-text text-transparent mt-0">Real Estate Dashboard</h1>
+          <div className="pb-3 border-b-2 border-cyber-orange/50 inline-block shadow-glow-pink">
+            <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyber-orange via-cyber-red to-cyber-pink mt-0 drop-shadow-lg">Real Estate Dashboard</h1>
           </div>
-          <p className="text-slate-600 dark:text-slate-400 mt-3">
+          <p className="text-slate-300 mt-3">
             Property performance tracking, monthly cashflow, and equity growth monitoring.
           </p>
         </div>
@@ -153,25 +153,25 @@ export function RealEstatePage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="card">
-          <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Total Property Value</p>
-          <p className="text-2xl font-bold text-slate-900 dark:text-white mt-2">{formatCurrency(totalValue)}</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 animate-stagger">
+        <div className="glass-card border border-cyber-cyan/40 glow-border-cyan p-5">
+          <p className="text-sm font-medium text-slate-300">Total Property Value</p>
+          <p className="text-2xl font-bold text-slate-100 mt-2">{formatCurrency(totalValue)}</p>
         </div>
-        <div className="card">
-          <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Total Equity</p>
-          <p className="text-2xl font-bold text-green-600 dark:text-green-400 mt-2">{formatCurrency(totalEquity)}</p>
+        <div className="glass-card border border-cyber-green/40 glow-border-green p-5">
+          <p className="text-sm font-medium text-slate-300">Total Equity</p>
+          <p className="text-2xl font-bold text-cyber-green mt-2">{formatCurrency(totalEquity)}</p>
         </div>
-        <div className="card">
-          <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Total Mortgage Balance</p>
-          <p className="text-2xl font-bold text-slate-900 dark:text-white mt-2">{formatCurrency(totalMortgage)}</p>
+        <div className="glass-card border border-cyber-red/40 p-5">
+          <p className="text-sm font-medium text-slate-300">Total Mortgage Balance</p>
+          <p className="text-2xl font-bold text-slate-100 mt-2">{formatCurrency(totalMortgage)}</p>
         </div>
       </div>
 
       {/* Add/Edit Form */}
       {showAddForm && (
-        <div className="card mb-6 bg-blue-50 dark:bg-slate-800 border-2 border-blue-200 dark:border-blue-900">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
+        <div className="glass-card border border-cyber-blue/40 glow-border-cyan mb-6 p-6 animate-fade-in">
+          <h3 className="text-lg font-bold text-blue-100 mb-4">
             {editingId ? 'Edit Property' : 'Add New Property'}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -266,8 +266,8 @@ export function RealEstatePage() {
       {/* Properties List */}
       <div className="space-y-4">
         {state.properties.length === 0 ? (
-          <div className="card text-center py-8">
-            <p className="text-slate-600 dark:text-slate-400">No properties yet. Click "Add Property" to get started.</p>
+          <div className="glass-card border border-slate-700/50 text-center py-8">
+            <p className="text-slate-400">No properties yet. Click "Add Property" to get started.</p>
           </div>
         ) : (
           state.properties.map((property) => {
@@ -275,24 +275,24 @@ export function RealEstatePage() {
             const equityPercentage = property.estimated_value > 0 ? (property.equity / property.estimated_value) * 100 : 0;
 
             return (
-              <div key={property.id} className="card">
+              <div key={property.id} className="glass-card border border-slate-700/50 rounded-lg p-5">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">{property.name}</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                    <h3 className="text-xl font-bold text-slate-100">{property.name}</h3>
+                    <p className="text-sm text-slate-400">
                       Equity: {equityPercentage.toFixed(1)}%
                     </p>
                   </div>
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleEditClick(property)}
-                      className="btn-secondary text-sm"
+                      className="px-3 py-2 text-sm font-semibold bg-gradient-to-r from-cyber-cyan to-cyber-blue text-slate-900 rounded-lg hover:shadow-glow-cyan transition-all"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleDeleteProperty(property.id)}
-                      className="btn-secondary text-sm bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-800"
+                      className="px-3 py-2 text-sm font-semibold bg-cyber-red/20 text-cyber-red border border-cyber-red/50 rounded-lg hover:bg-cyber-red/30 transition-all"
                     >
                       Delete
                     </button>
@@ -301,71 +301,71 @@ export function RealEstatePage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                   <div>
-                    <p className="text-xs font-medium text-slate-600 dark:text-slate-400 uppercase">Estimated Value</p>
-                    <p className="text-lg font-bold text-slate-900 dark:text-white">{formatCurrency(property.estimated_value)}</p>
+                    <p className="text-xs font-medium text-slate-400 uppercase">Estimated Value</p>
+                    <p className="text-lg font-bold text-slate-100">{formatCurrency(property.estimated_value)}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-slate-600 dark:text-slate-400 uppercase">Total Debt</p>
-                    <p className="text-lg font-bold text-slate-900 dark:text-white">{formatCurrency(property.mortgage_balance)}</p>
+                    <p className="text-xs font-medium text-slate-400 uppercase">Total Debt</p>
+                    <p className="text-lg font-bold text-slate-100">{formatCurrency(property.mortgage_balance)}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-slate-600 dark:text-slate-400 uppercase">Equity</p>
-                    <p className="text-lg font-bold text-green-600 dark:text-green-400">{formatCurrency(property.equity)}</p>
+                    <p className="text-xs font-medium text-slate-400 uppercase">Equity</p>
+                    <p className="text-lg font-bold text-cyber-green">{formatCurrency(property.equity)}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-slate-600 dark:text-slate-400 uppercase">Monthly Net Cashflow</p>
-                    <p className={`text-lg font-bold ${monthlyNetCashflow >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                    <p className="text-xs font-medium text-slate-400 uppercase">Monthly Net Cashflow</p>
+                    <p className={`text-lg font-bold ${monthlyNetCashflow >= 0 ? 'text-cyber-green' : 'text-cyber-red'}`}>
                       {formatCurrency(monthlyNetCashflow)}
                     </p>
                   </div>
                 </div>
 
                 {/* Debt Breakdown */}
-                <div className="border-t border-slate-200 dark:border-slate-700 pt-4 mb-4">
-                  <p className="text-sm font-bold text-slate-900 dark:text-white mb-3">Debt Against This Property</p>
+                <div className="border-t border-slate-700/50 pt-4 mb-4">
+                  <p className="text-sm font-bold text-slate-100 mb-3">Debt Against This Property</p>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                      <p className="text-xs font-medium text-slate-600 dark:text-slate-400 uppercase">Primary Mortgage</p>
-                      <p className="text-lg font-bold text-slate-900 dark:text-white">{formatCurrency(property.primary_mortgage || 0)}</p>
+                      <p className="text-xs font-medium text-slate-400 uppercase">Primary Mortgage</p>
+                      <p className="text-lg font-bold text-slate-100">{formatCurrency(property.primary_mortgage || 0)}</p>
                     </div>
                     {property.heloc_balance > 0 && (
                       <div>
-                        <p className="text-xs font-medium text-slate-600 dark:text-slate-400 uppercase">HELOC (Interest-Only)</p>
-                        <p className="text-lg font-bold text-orange-600 dark:text-orange-400">{formatCurrency(property.heloc_balance)}</p>
+                        <p className="text-xs font-medium text-slate-400 uppercase">HELOC (Interest-Only)</p>
+                        <p className="text-lg font-bold text-cyber-orange">{formatCurrency(property.heloc_balance)}</p>
                       </div>
                     )}
                     <div>
-                      <p className="text-xs font-medium text-slate-600 dark:text-slate-400 uppercase">Debt-to-Value</p>
-                      <p className="text-lg font-bold text-slate-900 dark:text-white">{((property.mortgage_balance / property.estimated_value) * 100).toFixed(1)}%</p>
+                      <p className="text-xs font-medium text-slate-400 uppercase">Debt-to-Value</p>
+                      <p className="text-lg font-bold text-slate-100">{((property.mortgage_balance / property.estimated_value) * 100).toFixed(1)}%</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Cashflow & Reserve details */}
-                <div className="border-t border-slate-200 dark:border-slate-700 pt-4">
+                <div className="border-t border-slate-700/50 pt-4">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div>
-                      <p className="text-xs font-medium text-slate-600 dark:text-slate-400 uppercase">Monthly Income</p>
-                      <p className="text-lg font-bold text-green-600 dark:text-green-400">{formatCurrency(property.monthly_income || 0)}</p>
+                      <p className="text-xs font-medium text-slate-400 uppercase">Monthly Income</p>
+                      <p className="text-lg font-bold text-cyber-green">{formatCurrency(property.monthly_income || 0)}</p>
                     </div>
                     <div>
-                      <p className="text-xs font-medium text-slate-600 dark:text-slate-400 uppercase">Monthly Expenses</p>
-                      <p className="text-lg font-bold text-slate-900 dark:text-white">{formatCurrency(property.monthly_expenses || 0)}</p>
+                      <p className="text-xs font-medium text-slate-400 uppercase">Monthly Expenses</p>
+                      <p className="text-lg font-bold text-slate-100">{formatCurrency(property.monthly_expenses || 0)}</p>
                     </div>
                     <div>
-                      <p className="text-xs font-medium text-slate-600 dark:text-slate-400 uppercase">Cashflow Status</p>
-                      <p className={`text-lg font-bold ${monthlyNetCashflow >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                      <p className="text-xs font-medium text-slate-400 uppercase">Cashflow Status</p>
+                      <p className={`text-lg font-bold ${monthlyNetCashflow >= 0 ? 'text-cyber-green' : 'text-cyber-red'}`}>
                         {monthlyNetCashflow >= 0 ? 'Positive' : 'Negative'}
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs font-medium text-slate-600 dark:text-slate-400 uppercase">Reserve Balance</p>
-                      <p className="text-lg font-bold text-blue-600 dark:text-blue-400">{formatCurrency(property.reserve_balance || 0)}</p>
+                      <p className="text-xs font-medium text-slate-400 uppercase">Reserve Balance</p>
+                      <p className="text-lg font-bold text-cyber-cyan">{formatCurrency(property.reserve_balance || 0)}</p>
                     </div>
                   </div>
                   {property.monthly_expenses > 0 && (
-                    <div className="mt-2 pt-2 border-t border-slate-200 dark:border-slate-700">
-                      <p className="text-xs text-slate-600 dark:text-slate-400">
+                    <div className="mt-2 pt-2 border-t border-slate-700/50">
+                      <p className="text-xs text-slate-400">
                         Reserve Runway: {property.reserve_balance > 0 ? ((property.reserve_balance / property.monthly_expenses) * 12).toFixed(1) : 0} months
                       </p>
                     </div>
@@ -417,89 +417,89 @@ export function NetWorthPage() {
   return (
     <div className="max-w-6xl mx-auto page-container">
       <div className="mb-6">
-        <div className="pb-3 border-b-2 border-cyan-500 dark:border-cyan-400 inline-block">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-cyan-800 dark:from-cyan-400 dark:to-cyan-500 bg-clip-text text-transparent mt-0">Net Worth Overview</h1>
+        <div className="pb-3 border-b-2 border-cyber-cyan/50 inline-block shadow-glow-cyan">
+          <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-teal mt-0 drop-shadow-lg">Net Worth Overview</h1>
         </div>
-        <p className="text-slate-600 dark:text-slate-400 mt-3">
+        <p className="text-slate-300 mt-3">
           High-level financial picture with assets, liabilities, and net worth trends.
         </p>
       </div>
 
       {/* Main Net Worth Display */}
-      <div className="card mt-4 bg-gradient-to-r from-green-900 to-green-800 dark:from-green-950 dark:to-green-900 border-2 border-green-600 dark:border-green-700">
-        <p className="text-sm font-medium text-green-200 uppercase">Total Net Worth</p>
-        <p className={`text-4xl md:text-5xl font-bold mt-2 ${netWorth >= 0 ? 'text-green-100' : 'text-red-200'}`}>
+      <div className="glass-card mt-4 bg-gradient-to-r from-cyber-green/10 to-cyber-cyan/10 border-2 border-cyber-green/50 shadow-glow-green">
+        <p className="text-sm font-medium text-cyber-green uppercase">Total Net Worth</p>
+        <p className={`text-4xl md:text-5xl font-bold mt-2 ${netWorth >= 0 ? 'text-cyber-green' : 'text-cyber-red'}`}>
           {formatCurrency(netWorth)}
         </p>
-        <p className="text-green-200 mt-2 text-sm">
+        <p className="text-slate-300 mt-2 text-sm">
           Assets {netWorth >= 0 ? 'exceed' : 'fall short of'} liabilities
         </p>
       </div>
 
       {/* Assets vs Liabilities Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-        <div className="card bg-blue-50 dark:bg-slate-800 border-2 border-blue-200 dark:border-blue-900">
-          <p className="text-sm font-medium text-slate-600 dark:text-slate-400 uppercase">Total Assets</p>
-          <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mt-2">{formatCurrency(totalAssets)}</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 animate-stagger">
+        <div className="glass-card border border-cyber-cyan/40 glow-border-cyan p-5">
+          <p className="text-sm font-medium text-slate-300 uppercase">Total Assets</p>
+          <p className="text-3xl font-bold text-cyber-cyan mt-2">{formatCurrency(totalAssets)}</p>
         </div>
-        <div className="card bg-red-50 dark:bg-slate-800 border-2 border-red-200 dark:border-red-900">
-          <p className="text-sm font-medium text-slate-600 dark:text-slate-400 uppercase">Total Liabilities</p>
-          <p className="text-3xl font-bold text-red-600 dark:text-red-400 mt-2">{formatCurrency(totalDebt)}</p>
+        <div className="glass-card border border-cyber-red/40 p-5">
+          <p className="text-sm font-medium text-slate-300 uppercase">Total Liabilities</p>
+          <p className="text-3xl font-bold text-cyber-red mt-2">{formatCurrency(totalDebt)}</p>
         </div>
       </div>
 
       {/* Asset Breakdown */}
       <div className="mt-6">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Asset Breakdown</h2>
+        <h2 className="text-2xl font-bold text-cyan-100 mb-4">Asset Breakdown</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="card">
-            <p className="text-sm font-medium text-slate-600 dark:text-slate-400 uppercase">Liquid Assets</p>
+          <div className="glass-card border border-slate-700/50 p-5">
+            <p className="text-sm font-medium text-slate-300 uppercase">Liquid Assets</p>
             <div className="mt-4 space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-slate-700 dark:text-slate-300">Checking Account</span>
-                <span className="font-bold text-slate-900 dark:text-white">{formatCurrency(checkingBalance)}</span>
+                <span className="text-slate-300">Checking Account</span>
+                <span className="font-bold text-slate-100">{formatCurrency(checkingBalance)}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-slate-700 dark:text-slate-300">Savings Account</span>
-                <span className="font-bold text-slate-900 dark:text-white">{formatCurrency(savingsBalance)}</span>
+                <span className="text-slate-300">Savings Account</span>
+                <span className="font-bold text-slate-100">{formatCurrency(savingsBalance)}</span>
               </div>
-              <div className="border-t border-slate-200 dark:border-slate-700 pt-3">
+              <div className="border-t border-slate-700/50 pt-3">
                 <div className="flex justify-between items-center">
-                  <span className="font-medium text-slate-900 dark:text-white">Total Liquid</span>
-                  <span className="font-bold text-blue-600 dark:text-blue-400">{formatCurrency(checkingBalance + savingsBalance)}</span>
+                  <span className="font-medium text-slate-100">Total Liquid</span>
+                  <span className="font-bold text-cyber-cyan">{formatCurrency(checkingBalance + savingsBalance)}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="card">
-            <p className="text-sm font-medium text-slate-600 dark:text-slate-400 uppercase">Retirement Accounts</p>
+          <div className="glass-card border border-slate-700/50 p-5">
+            <p className="text-sm font-medium text-slate-300 uppercase">Retirement Accounts</p>
             <div className="mt-4 space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-slate-700 dark:text-slate-300">Roth IRA</span>
-                <span className="font-bold text-slate-900 dark:text-white">{formatCurrency(retirementAccounts.roth_ira || 0)}</span>
+                <span className="text-slate-300">Roth IRA</span>
+                <span className="font-bold text-slate-100">{formatCurrency(retirementAccounts.roth_ira || 0)}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-slate-700 dark:text-slate-300">401(k)</span>
-                <span className="font-bold text-slate-900 dark:text-white">{formatCurrency(retirementAccounts.four_oh_one_k || 0)}</span>
+                <span className="text-slate-300">401(k)</span>
+                <span className="font-bold text-slate-100">{formatCurrency(retirementAccounts.four_oh_one_k || 0)}</span>
               </div>
-              <div className="border-t border-slate-200 dark:border-slate-700 pt-3">
+              <div className="border-t border-slate-700/50 pt-3">
                 <div className="flex justify-between items-center">
-                  <span className="font-medium text-slate-900 dark:text-white">Total Retirement</span>
-                  <span className="font-bold text-blue-600 dark:text-blue-400">{formatCurrency(totalRetirement)}</span>
+                  <span className="font-medium text-slate-100">Total Retirement</span>
+                  <span className="font-bold text-cyber-cyan">{formatCurrency(totalRetirement)}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="card md:col-span-2">
-            <p className="text-sm font-medium text-slate-600 dark:text-slate-400 uppercase">Real Estate Equity</p>
+          <div className="glass-card md:col-span-2 border border-slate-700/50 p-5">
+            <p className="text-sm font-medium text-slate-300 uppercase">Real Estate Equity</p>
             <div className="mt-4">
               <div className="flex justify-between items-center">
-                <span className="text-slate-700 dark:text-slate-300">Property Equity</span>
-                <span className="font-bold text-green-600 dark:text-green-400 text-xl">{formatCurrency(propertyEquity)}</span>
+                <span className="text-slate-300">Property Equity</span>
+                <span className="font-bold text-cyber-green text-xl">{formatCurrency(propertyEquity)}</span>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
+              <p className="text-xs text-slate-400 mt-2">
                 Includes equity in all {state.properties.length} properties
               </p>
             </div>
@@ -509,26 +509,26 @@ export function NetWorthPage() {
 
       {/* Liability Breakdown */}
       <div className="mt-6">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Liability Breakdown</h2>
-        <div className="card">
+        <h2 className="text-2xl font-bold text-cyan-100 mb-4">Liability Breakdown</h2>
+        <div className="glass-card border border-slate-700/50 p-5">
           <div className="space-y-2">
             {state.debts.length === 0 ? (
-              <p className="text-slate-600 dark:text-slate-400">No debts recorded</p>
+              <p className="text-slate-400">No debts recorded</p>
             ) : (
               <>
-                <p className="text-sm font-medium text-slate-600 dark:text-slate-400 uppercase mb-3">Outstanding Debts</p>
+                <p className="text-sm font-medium text-slate-300 uppercase mb-3">Outstanding Debts</p>
                 {state.debts
                   .filter((d) => d.balance > 0)
                   .map((debt) => (
                     <div key={debt.id} className="flex justify-between items-center py-2">
-                      <span className="text-slate-700 dark:text-slate-300">{debt.name}</span>
-                      <span className="font-bold text-slate-900 dark:text-white">{formatCurrency(debt.balance)}</span>
+                      <span className="text-slate-300">{debt.name}</span>
+                      <span className="font-bold text-slate-100">{formatCurrency(debt.balance)}</span>
                     </div>
                   ))}
-                <div className="border-t border-slate-200 dark:border-slate-700 pt-3 mt-3">
+                <div className="border-t border-slate-700/50 pt-3 mt-3">
                   <div className="flex justify-between items-center">
-                    <span className="font-medium text-slate-900 dark:text-white">Total Debt</span>
-                    <span className="font-bold text-red-600 dark:text-red-400 text-lg">{formatCurrency(totalDebt)}</span>
+                    <span className="font-medium text-slate-100">Total Debt</span>
+                    <span className="font-bold text-cyber-red text-lg">{formatCurrency(totalDebt)}</span>
                   </div>
                 </div>
               </>
@@ -539,26 +539,26 @@ export function NetWorthPage() {
 
       {/* Financial Metrics */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Financial Metrics</h2>
+        <h2 className="text-2xl font-bold text-cyan-100 mb-4">Financial Metrics</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="card">
-            <p className="text-sm font-medium text-slate-600 dark:text-slate-400 uppercase">Debt-to-Assets Ratio</p>
-            <p className="text-3xl font-bold text-slate-900 dark:text-white mt-2">{debtToAssetsRatio.toFixed(1)}%</p>
-            <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
+          <div className="glass-card border border-slate-700/50 p-5">
+            <p className="text-sm font-medium text-slate-300 uppercase">Debt-to-Assets Ratio</p>
+            <p className="text-3xl font-bold text-slate-100 mt-2">{debtToAssetsRatio.toFixed(1)}%</p>
+            <p className="text-xs text-slate-400 mt-2">
               {debtToAssetsRatio < 50 ? 'Healthy leverage' : 'Monitor debt levels'}
             </p>
           </div>
-          <div className="card">
-            <p className="text-sm font-medium text-slate-600 dark:text-slate-400 uppercase">Asset Coverage</p>
-            <p className="text-3xl font-bold text-slate-900 dark:text-white mt-2">{((totalAssets / totalDebt) || 0).toFixed(2)}x</p>
-            <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
+          <div className="glass-card border border-slate-700/50 p-5">
+            <p className="text-sm font-medium text-slate-300 uppercase">Asset Coverage</p>
+            <p className="text-3xl font-bold text-slate-100 mt-2">{((totalAssets / totalDebt) || 0).toFixed(2)}x</p>
+            <p className="text-xs text-slate-400 mt-2">
               Assets per $1 of debt
             </p>
           </div>
-          <div className="card">
-            <p className="text-sm font-medium text-slate-600 dark:text-slate-400 uppercase">Real Estate %</p>
-            <p className="text-3xl font-bold text-slate-900 dark:text-white mt-2">{totalAssets > 0 ? ((propertyEquity / totalAssets) * 100).toFixed(1) : 0}%</p>
-            <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
+          <div className="glass-card border border-slate-700/50 p-5">
+            <p className="text-sm font-medium text-slate-300 uppercase">Real Estate %</p>
+            <p className="text-3xl font-bold text-slate-100 mt-2">{totalAssets > 0 ? ((propertyEquity / totalAssets) * 100).toFixed(1) : 0}%</p>
+            <p className="text-xs text-slate-400 mt-2">
               Of total assets in real estate
             </p>
           </div>
